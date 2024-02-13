@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
  });
  function getNav(){
  
-    fetch('../../navbar.html')
+    fetch('../../mangaNav.html')
     .then(response => response.text())
     .then(html => {
         document.getElementById('navbar').innerHTML = html;

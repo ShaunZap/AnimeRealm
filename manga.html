@@ -11,6 +11,43 @@
 </head>
 <body>
     <div id="navbar"></div>
-    <h1>Manga site</h1>
+    <div id="demo" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active indicator-button"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="1" class="indicator-button"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="2" class="indicator-button"></button>
+        </div>
+        
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="5000">
+            <img src="assets/images/Beserk.jpg" alt="demon slayer" class="d-block" style="width:100%">
+            <div class="carousel-caption">
+              <button class="carousel-button">Check Now</button>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <img src="assets/images/Vagabond.jpg" alt="gintama" class="d-block" style="width:100%">
+            <div class="carousel-caption">
+              <button class="carousel-button">Check Now</button>
+            </div> 
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <img src="assets/images/kingdom.jpg" alt="one piece" class="d-block" style="width:100%">
+            <div class="carousel-caption">
+              <button class="carousel-button">Check Now</button>
+            </div>  
+          </div>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
 </body>
 </html>

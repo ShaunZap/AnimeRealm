@@ -1,0 +1,22 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.carousel-button{
+    border: none;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 2px 20px 0px 20px;
+    background-color: #ff0073;
+    color: white;
+    box-shadow: rgba(17, 17, 17, 0.607) 0px 0px 3px 2px inset;
+    border: 3px solid black;
+    border-radius: 4px;
+}
+.indicator-button{
+    border: 1px solid white !important;
+}
+.carousel-indicators .active{
+    background-color: #ff0073 !important;
+}

@@ -12,6 +12,13 @@
     padding: 2px 20px 0px 20px;
     background-color: #ff5900;
     color: white;
-    box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 3px 2px inset;
+    box-shadow: rgba(17, 17, 17, 0.607) 0px 0px 3px 2px inset;
+    border: 3px solid black;
     border-radius: 4px;
+}
+.indicator-button{
+    border: 1px solid white !important;
+}
+.carousel-indicators .active{
+    background-color: #ff5900 !important;
 }
