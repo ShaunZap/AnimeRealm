@@ -1,0 +1,17 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Libre Baskerville", serif;
+}
+
+.carousel-button{
+    border: none;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 2px 20px 0px 20px;
+    background-color: #ff5900;
+    color: white;
+    box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 3px 2px inset;
+    border-radius: 4px;
+}
