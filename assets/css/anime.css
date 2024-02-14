@@ -4,7 +4,30 @@
     box-sizing: border-box;
     font-family: "Libre Baskerville", serif;
 }
+body{
+    background-color: black !important;
+}
+::-webkit-scrollbar {
+    width: 15px;
+  }
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ff660e;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff954e;
+  }
 
+/*===========Carousel=============*/
+/*===========Carousel=============*/
+/*===========Carousel=============*/
+
+#anime-carousel{
+  margin-top: 55px;
+}
 .carousel-button{
     border: none;
     font-size: 20px;
@@ -15,10 +38,66 @@
     box-shadow: rgba(17, 17, 17, 0.607) 0px 0px 3px 2px inset;
     border: 3px solid black;
     border-radius: 4px;
+    transition: 0.3s all;
+}
+.carousel-button:hover{
+  transform: translateY(-2px);
 }
 .indicator-button{
     border: 1px solid white !important;
 }
 .carousel-indicators .active{
     background-color: #ff5900 !important;
+}
+.carousel-control-next-icon{
+    background-color: #000000 !important;
+    border-radius: 5px;
+}
+.carousel-control-prev-icon{
+    background-color: #000000 !important;  
+    border-radius: 5px;
+}
+
+/*=========== Top 10 =============*/
+/*=========== Top 10 =============*/
+/*=========== Top 10 =============*/
+
+.top-10-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.anime-title{
+  font-family: "Rubik 80s Fade", system-ui;
+  font-weight: 400;
+  font-size: 40px;
+  color: #ffcb93;
+  align-self: center;
+}
+.sword{
+  width: 60px;
+}
+
+#top-anime-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 5px;
+  width: 95%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: rgb(57, 57, 57);
+  border-radius: 5px;
+  border: 2px solid #ff5900;
+  margin-top: 20px;
+  /* filter: blur(5px); */
+}
+.card{
+  overflow: hidden;
+  background-color: #000000 !important;
+  color: white !important;
+}
+.card-image{
+  display: block;
 }

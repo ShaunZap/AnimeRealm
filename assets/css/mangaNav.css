@@ -12,7 +12,7 @@
 #logo-title{
     font-style: normal;
     font-weight: 700;
-    font-size: 30px;
+    font-size:25px;
     color: white;
     -webkit-text-stroke: 1px #070707;
 }
@@ -38,17 +38,17 @@
 }
 @keyframes floating {
     from{
-        top: -6px;
+        top: -10px;
     }
     to{
-        top: -1px;
+        top: -4px;
     }
 }
 .logo-image.one{
-    left:6px;
+    left:5px;
 }
 .logo-image.two{
-    left: 112px;
+    left: 92px;
 }
 .logo-container{
     position: relative;
