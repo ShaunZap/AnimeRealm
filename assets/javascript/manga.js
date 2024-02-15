@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     getNav();
+    getTopManga();
  });
  function getNav(){
  
@@ -7,5 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(response => response.text())
     .then(html => {
         document.getElementById('navbar').innerHTML = html;
+    });
+ }
+ async function getTopManga(){
+    const topResponse = await fetch(`https://kitsu.io/api/edge/manga?sort=popularityRank`);
+    const topData = await topResponse.json();
+    console.log(topData);
+    let cards = generateCards(topData);
+    let cardContainer = document.getElementById("top-manga-card-container");
+    cards.forEach(card => {
+        cardContainer.appendChild(card);
     });
  }
