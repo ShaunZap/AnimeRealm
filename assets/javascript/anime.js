@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     getNav();
     getTopAnime();
+    getUpcomingAnime();
  });
  function getNav(){
  
@@ -12,11 +13,21 @@ document.addEventListener('DOMContentLoaded', function () {
  }
 
  async function getTopAnime(){
-    const topResponse = await fetch(`https://kitsu.io/api/edge/anime?sort=popularityRank`);
+    const topResponse = await fetch(`https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=8`);
     const topData = await topResponse.json();
     console.log(topData);
     let cards = generateCards(topData);
     let cardContainer = document.getElementById("top-anime-card-container");
+    cards.forEach(card => {
+        cardContainer.appendChild(card);
+    });
+ }
+ async function getUpcomingAnime(){
+    const topResponse = await fetch(`https://kitsu.io/api/edge/anime?filter[status]=upcoming&page[limit]=8`);
+    const topData = await topResponse.json();
+    console.log(topData);
+    let cards = generateCards(topData);
+    let cardContainer = document.getElementById("upcoming-card-container");
     cards.forEach(card => {
         cardContainer.appendChild(card);
     });

@@ -67,7 +67,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 50px;
+  }
+  .upcoming-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
   }
   .manga-title{
     font-family: "Rubik 80s Fade", system-ui;
@@ -94,6 +101,32 @@ body{
     0 6px 20px rgba(0, 0, 0, 0.15);
   }
   #top-manga-card-container::after{
+    content: " ";
+    position: absolute;
+    background: inherit;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 500px rgba(255, 255, 255, .4); 
+    filter: blur(10px);
+    z-index: -1;
+  }
+  #upcoming-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #ff4c9d;
+    border-radius: 5px;
+    margin-top: 20px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
+    0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  #upcoming-card-container::after{
     content: " ";
     position: absolute;
     background: inherit;
