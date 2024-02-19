@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
  });
  function getNav(){
  
-    fetch('../../mangaNav.html')
+    fetch('../../pages/mangaNav.html')
     .then(response => response.text())
     .then(html => {
         document.getElementById('navbar').innerHTML = html;
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
  }
 
  let cardContainer = document.getElementById("results-container");          
- cardContainer.innerHTML = `<img src="assets/images/allanime.jpg" alt="Manga" class="d-block" style="width:100%; opacity:0.7">`
+ cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Manga" class="d-block" style="width:100%; opacity:0.7">`
 
  document.getElementById("submit").addEventListener("click", function(){
     searchQuery = document.getElementById("search").value;
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchData = await response.json();
     console.log(searchData);
     if(searchData.meta.count == 0){
-        cardContainer.innerHTML = `<img src="assets/images/notFoundManga.jpg" alt="Not Found"  style="width:100%; opacity:0.7">`;
+        cardContainer.innerHTML = `<img src="../assets/images/notFoundManga.jpg" alt="Not Found"  style="width:100%; opacity:0.7">`;
     }else{
         cardContainer.innerHTML = "";
         let cards = generateCards(searchData);
