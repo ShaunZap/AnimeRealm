@@ -49,11 +49,13 @@ async function displayInfo(id, type) {
             <div class="animan-end-year">End Date: ${endDate}</div>
             <div class="animan-type">Type: ${animanType}</div>
             <div class="animan-status">Status: ${status}</div>
-            <a class="animan-trailer" href="${trailer}" target="_blank">Watch ${animanTitle} Trailer</a>
+            <a class="animan-trailer" href="${trailer}" target="_blank">Watch ${animanTitle}(Trailer)</a>
         </div>
-    </div>
-    <div class="synopsis-container">
-        <div class="synopsis-title">Synopsis</div>
-        <div class="synopsis">${synopsis}</div>
+    </div>  
    `
+   synopsisContainer = document.getElementById("synopsis-container");
+   synopsisContainer.innerHTML = `
+   <div class="synopsis-title">Synopsis</div>
+   <div class="synopsis">${synopsis}</div>
+   `;
 }
