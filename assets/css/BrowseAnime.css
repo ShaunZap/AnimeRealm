@@ -116,6 +116,7 @@ body{
   transition: 0.3s all;
 }
 .card:hover{
+  cursor: pointer;
   transform:scale(1.03);
   -ms-transform: scale(1.03);
   -webkit-transform: scale(1.03);

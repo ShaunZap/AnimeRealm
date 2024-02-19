@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let cards = generateCards(searchData);
         cards.forEach(card => {
         cardContainer.appendChild(card);
+
+        card.addEventListener('click', () => {
+            const aniManId = card.getAttribute('animanid');
+            const aniManType = card.getAttribute('animantype');
+            console.log('Clicked card with animanid:', aniManId, aniManType);
+        });
     });
     }   
  }

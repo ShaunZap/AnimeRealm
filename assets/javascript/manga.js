@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let cardContainer = document.getElementById("top-manga-card-container");
     cards.forEach(card => {
         cardContainer.appendChild(card);
+        
+        card.addEventListener('click', () => {
+            const aniManId = card.getAttribute('animanid');
+            const aniManType = card.getAttribute('animantype');
+            console.log('Clicked card with animanid:', aniManId, aniManType);
+        });
     });
  }
  async function getUpcomingManga(){
@@ -29,5 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let cardContainer = document.getElementById("upcoming-card-container");
     cards.forEach(card => {
         cardContainer.appendChild(card);
+
+        card.addEventListener('click', () => {
+            const aniManId = card.getAttribute('animanid');
+            const aniManType = card.getAttribute('animantype');
+            console.log('Clicked card with animanid:', aniManId, aniManType);
+        });
     });
  }

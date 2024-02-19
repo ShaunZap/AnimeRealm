@@ -101,7 +101,7 @@ body{
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
   0 6px 20px rgba(0, 0, 0, 0.15);
 }
-#upcoming-card-container::after{
+#top-anime-card-container::after{
   content: " ";
   position: absolute;
   background: inherit;
@@ -127,7 +127,7 @@ body{
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
   0 6px 20px rgba(0, 0, 0, 0.15);
 }
-#top-upcoming-card-container::after{
+#upcoming-card-container::after{
   content: " ";
   position: absolute;
   background: inherit;
@@ -140,6 +140,8 @@ body{
   z-index: -1;
 }
 .card{
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background-color: #000000 !important;
   color: white !important;
@@ -148,6 +150,7 @@ body{
   transition: 0.3s all;
 }
 .card:hover{
+  cursor: pointer;
   transform:scale(1.03);
   -ms-transform: scale(1.03);
   -webkit-transform: scale(1.03);
@@ -168,6 +171,7 @@ body{
   display: flex;
   justify-content: space-around;
   margin-bottom: 5px;
+  margin-top: auto;
 }
 .rating{
   color:#ff660e;

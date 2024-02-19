@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     getNav();
     getTopAnime();
     getUpcomingAnime();
+
  });
  function getNav(){
- 
     fetch('../../pages/animeNav.html')
     .then(response => response.text())
     .then(html => {
@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', function () {
     let cardContainer = document.getElementById("top-anime-card-container");
     cards.forEach(card => {
         cardContainer.appendChild(card);
+
+        card.addEventListener('click', () => {
+            const aniManId = card.getAttribute('animanid');
+            const aniManType = card.getAttribute('animantype');
+            console.log('Clicked card with animanid:', aniManId, aniManType);
+            const url = `../../pages/animeInfo.html?id=${aniManId}&type=${aniManType}`;
+            console.log('Opening URL:', url);
+            window.open(url, '_blank');
+        });
     });
  }
  async function getUpcomingAnime(){
@@ -30,5 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let cardContainer = document.getElementById("upcoming-card-container");
     cards.forEach(card => {
         cardContainer.appendChild(card);
+
+        card.addEventListener('click', () => {
+            const aniManId = card.getAttribute('animanid');
+            const aniManType = card.getAttribute('animantype');
+            console.log('Clicked card with animanid:', aniManId, aniManType);
+            const url = `../../pages/animeInfo.html?id=${aniManId}&type=${aniManType}`;
+            console.log('Opening URL:', url);
+            window.open(url, '_blank');
+        });
     });
  }
