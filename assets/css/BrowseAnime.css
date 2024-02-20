@@ -14,7 +14,7 @@ body{
     background: #1e1e1e;
   }
   ::-webkit-scrollbar-thumb {
-    background: #ff660e;
+    background: radial-gradient(circle, orange, #ff660e);
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -108,6 +108,8 @@ body{
   z-index: -1;
 }
 .card{
+  min-width: 320px;
+  max-width: 500px;
   overflow: hidden;
   background-color: #000000 !important;
   color: white !important;

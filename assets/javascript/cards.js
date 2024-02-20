@@ -2,7 +2,9 @@
 function generateCards(data){
   return data.data.map(cardElement => {
     const attributes = cardElement.attributes;
-    const animeTitle = attributes.titles.en || attributes.titles.en_us || attributes.titles.en_jp;
+    const animeTitle = attributes.titles.en || attributes.titles.en_us || attributes.titles.en_jp || 
+                      attributes.titles.en_kr || attributes.titles.en_cn || attributes.canonicalTitle;
+                      
     const episodeOrStatus = attributes.episodeCount ? `Episode: ${attributes.episodeCount}` : `Status: ${attributes.status}`;
     const thumbnail = attributes.posterImage.small || attributes.coverImage.small;
     const animeMangaId = cardElement.id;
