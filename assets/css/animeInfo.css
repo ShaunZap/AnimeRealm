@@ -7,6 +7,53 @@ body{
     background-color: black !important;
     font-family: "Libre Baskerville", serif;
 }
+::-webkit-scrollbar {
+    width: 15px;
+  }
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ff660e;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff954e;
+  }
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle, orange, #ff660e);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity .5s ease;
+    z-index: 9999;
+}
+#splash-screen > h1{
+    font-weight: bold;
+    animation-name: splash-screen;
+    animation-duration: 1s;
+    font-size: 80px;
+    -webkit-text-stroke: 1px #070707;
+}
+@keyframes splash-screen {
+    0%   {font-size: 300px; transform: rotate(360deg);}
+    50%  {font-size: 14px; }
+    100% {font-size: 150px;  transform: rotate(0deg);}
+  }
+  
+#splash-screen.fade{
+    opacity: 0;
+    z-index: -1;
+    transition: 1s ease;
+}
 #info-container{
     width: 90%;
     margin: 0 auto;
@@ -43,14 +90,14 @@ body{
 .animan-content{
     width: 100%;
     padding: 10px;
-    font-size: 22px;
+    font-size: 20px;
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5),
              0 0 2px rgba(255, 255, 255, 0.5),
              0 0 3px rgba(255, 255, 255, 0.5);
     line-height: 1.8;
 }
 .animan-title{
-    background-color: #ff660e;
+    background: radial-gradient(circle, orange, #ff660e);
     width: 100%;
     text-align: center;
     font-size: 30px;
@@ -58,35 +105,44 @@ body{
     font-weight: bold;
     border-bottom: 2px solid white;
     box-shadow: #fc7d33 0px 0px 10px 1px;
+    -webkit-text-stroke: 1px #070707a4;
 }
 .animan-score{
-    text-shadow: 0 0 3px rgb(255, 166, 82),
+    text-shadow: 0 0 2px rgb(255, 166, 82),
     0 0 3px rgba(211, 100, 36, 0.845),
-    0 0 5px rgba(255, 119, 0, 0.986);
-    font-size: 26px;
+    0 0 4px rgba(255, 119, 0, 0.986);
+    font-size: 24px;
     font-weight: bold;
 }
 .animan-rank{
-    text-shadow: 0 0 3px rgb(255, 166, 82),
-    0 0 4px rgba(211, 100, 36, 0.845),
-    0 0 5px rgba(255, 119, 0, 0.986);
-    font-size: 26px;
+    text-shadow: 0 0 2px rgb(255, 166, 82),
+    0 0 3px rgba(211, 100, 36, 0.845),
+    0 0 4px rgba(255, 119, 0, 0.986);
+    font-size: 24px;
     font-weight: bold;
 }
-.animan-trailer{
+.animan-trailer {
     text-decoration: none;
     color: #ffffff;
-    text-shadow: 0 0 4px rgb(255, 166, 82),
-    0 0 6px rgba(211, 100, 36, 0.845),
-    0 0 8px rgba(255, 119, 0, 0.986);
+    background-color: #ff660e;
+    padding: 3px 8px 3px 8px;
+    border: 2px solid #ff660e;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: #fc7d33 0px 0px 2px 1px;
+    text-shadow: 0 0 2px rgb(255, 166, 82),
+                 0 0 4px rgba(211, 100, 36, 0.845),
+                 0 0 6px rgba(255, 119, 0, 0.986);
+    transition: 0.3s all;
 }
-.animan-trailer:hover{
+
+.animan-trailer:hover {
     text-decoration: none;
-    color: #ffffff;
-    text-shadow: 0 0 4px rgb(255, 82, 82),
-    0 0 6px rgba(211, 62, 36, 0.845),
-    0 0 8px rgba(136, 0, 255, 0.986);
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    position: relative;
 }
+
 
 #synopsis-container{
     width: 90%;
@@ -105,12 +161,12 @@ body{
     color: #ffffff;
     text-align: center;
     font-size: 30px;
-    background-color: #ff660e;
+    background: radial-gradient(circle, orange, #ff660e);
     font-weight: bold;
     padding: 5px;
     border-bottom: 2px solid white;
     box-shadow: #fc7d33 0px 0px 10px 1px;
-
+    -webkit-text-stroke: 1px #070707a4;
 }
 .synopsis{
     padding: 20px;

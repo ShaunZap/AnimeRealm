@@ -93,7 +93,7 @@ body{
     width: 95%;
     margin: 0 auto;
     padding: 10px;
-    background-color: #ff4c9d;
+    background: radial-gradient(circle, #ff6eca, #ff0073);
     border-radius: 5px;
     margin-top: 20px;
     position: relative;
@@ -119,7 +119,7 @@ body{
     width: 95%;
     margin: 0 auto;
     padding: 10px;
-    background-color: #ff4c9d;
+    background: radial-gradient(circle, #ff6eca, #ff0073);
     border-radius: 5px;
     margin-top: 20px;
     position: relative;

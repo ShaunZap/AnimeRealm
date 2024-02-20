@@ -11,6 +11,18 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('navbar').innerHTML = html;
     });
  }
+
+ const carouselButtons = document.querySelectorAll('.carousel-button');
+ carouselButtons.forEach(button => {
+     button.addEventListener('click', function(){
+         const aniManId = this.getAttribute('animanid');
+         const aniManType = this.getAttribute('animantype');
+         const url = `../../pages/mangaInfo.html?id=${aniManId}&type=${aniManType}`;
+         console.log('Opening URL:', url);
+         window.open(url, '_blank');
+     });
+ });
+ 
  async function getTopManga(){
     const topResponse = await fetch(`https://kitsu.io/api/edge/manga?sort=popularityRank&page[limit]=8`);
     const topData = await topResponse.json();
@@ -24,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const aniManId = card.getAttribute('animanid');
             const aniManType = card.getAttribute('animantype');
             console.log('Clicked card with animanid:', aniManId, aniManType);
+            const url = `../../pages/mangaInfo.html?id=${aniManId}&type=${aniManType}`;
+            console.log('Opening URL:', url);
+            window.open(url, '_blank');
         });
     });
  }
@@ -40,6 +55,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const aniManId = card.getAttribute('animanid');
             const aniManType = card.getAttribute('animantype');
             console.log('Clicked card with animanid:', aniManId, aniManType);
+            const url = `../../pages/mangaInfo.html?id=${aniManId}&type=${aniManType}`;
+            console.log('Opening URL:', url);
+            window.open(url, '_blank');
         });
     });
  }

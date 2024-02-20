@@ -5,16 +5,18 @@
     font-family: "Libre Baskerville", serif;
 }
 .nav-back{
-    background-color: #ff5900;
+    background: radial-gradient(circle, orange, #ff660e);
     padding: 10px 0px 0px 0px !important;
     box-shadow: rgba(0, 0, 0, 0.635) 0px -50px 36px -28px inset;
+    border-bottom: 1px solid white;
+    box-shadow: #fc7d33 0px 0px 10px 1px;
 }
 #logo-title{
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
     color: white;
-    -webkit-text-stroke: 1px #070707;
+    -webkit-text-stroke: 1px #070707b1;
 }
 .link-text{
     font-weight: 400;
@@ -23,7 +25,7 @@
 }
 .link-text:hover{
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.55) !important;
+    color: black !important;
 }
 .logo-image{
     width: 35px;

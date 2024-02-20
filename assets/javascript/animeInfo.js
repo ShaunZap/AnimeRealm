@@ -1,11 +1,16 @@
+
+infoContainer = document.getElementById("info-container");
+
 document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(()=>{
+        document.getElementById('splash-screen').classList.toggle('fade');
+    }, 2000)
     getNav();
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const type = params.get('type');
     displayInfo(id, type);
  });
- infoContainer = document.getElementById("info-container");
  function getNav(){
  
     fetch('../../pages/animeNav.html')
@@ -18,6 +23,7 @@ async function displayInfo(id, type) {
     const response = await fetch(`https://kitsu.io/api/edge/${type}/${id}`);
     const data = await response.json();
     console.log(id, type);
+    console.log(data);
     
     const infoResult = data.data.attributes;
     const animanTitle = infoResult.titles.en || infoResult.titles.en_us || infoResult.titles.en_jp;
@@ -32,6 +38,7 @@ async function displayInfo(id, type) {
     const animanType = type;
     const trailer = `https://www.youtube.com/watch?v=${infoResult.youtubeVideoId}`
     const synopsis = infoResult.description || infoResult.synopsis;
+    const ageRating = infoResult.ageRating +" , "+ infoResult.ageRatingGuide;
 
     infoContainer.innerHTML = `
     <div class="info-image">
@@ -40,16 +47,17 @@ async function displayInfo(id, type) {
     <div class="info-content">
         <div class="animan-title">${animanTitle}</div>
         <div class="animan-content">
-            <div class="animan-score">Score: ${PopularityScore}</div>
-            <div class="animan-rank">Rank: ${rank}</div>
+            <div class="animan-score">Score: ${PopularityScore} (Popularity)</div>
+            <div class="animan-rank">Rank: ${rank} (Critique)</div>
             <div class="japanese-name">Japanese Name: ${japaneseName}</div>
+            <div>Age Rating: ${ageRating}</div>
             <div class="animan-episodeCount">Episodes: ${episodeCount}</div>
             <div class="animan-episodeLength">Episode Duration: ${episodeLength}</div>
             <div class="animan-start-year">Start Date: ${startDate}</div>
             <div class="animan-end-year">End Date: ${endDate}</div>
             <div class="animan-type">Type: ${animanType}</div>
             <div class="animan-status">Status: ${status}</div>
-            <a class="animan-trailer" href="${trailer}" target="_blank">Watch ${animanTitle}(Trailer)</a>
+            <a class="animan-trailer" href="${trailer}" target="_blank">Watch trailer</a>
         </div>
     </div>  
    `

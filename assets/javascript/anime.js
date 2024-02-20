@@ -11,7 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('navbar').innerHTML = html;
     });
  }
-
+ const carouselButtons = document.querySelectorAll('.carousel-button');
+ carouselButtons.forEach(button => {
+     button.addEventListener('click', function(){
+         const aniManId = this.getAttribute('animanid');
+         const aniManType = this.getAttribute('animantype');
+         const url = `../../pages/animeInfo.html?id=${aniManId}&type=${aniManType}`;
+         console.log('Opening URL:', url);
+         window.open(url, '_blank');
+     });
+ });
+ 
  async function getTopAnime(){
     const topResponse = await fetch(`https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=8`);
     const topData = await topResponse.json();

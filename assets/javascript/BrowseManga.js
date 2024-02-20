@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const aniManId = card.getAttribute('animanid');
             const aniManType = card.getAttribute('animantype');
             console.log('Clicked card with animanid:', aniManId, aniManType);
+            const url = `../../pages/mangaInfo.html?id=${aniManId}&type=${aniManType}`;
+            console.log('Opening URL:', url);
+            window.open(url, '_blank');
         });
     });
     }   
