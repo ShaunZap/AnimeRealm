@@ -1,0 +1,176 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Libre Baskerville", serif;
+}
+body{
+    background: radial-gradient(circle, rgb(249, 154, 154),#ff4656, rgb(254, 49, 97), #ff660e, rgb(255, 136, 51));
+    height: 100vh; 
+    margin: 0; 
+    border: 5px solid black;
+}
+@keyframes float{
+    from{
+        top: -20px;
+    }
+    to{
+        top: 20px;
+    }
+}
+.container{
+    width: 30%;
+    margin: 0 auto;
+    background-color: inherit;
+    margin-top: 80px;
+    padding-bottom: 100px;
+    border-radius: 10px;
+    /* height: 60vh; */
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142), 
+  0 6px 20px rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.443);
+  position: relative;
+  animation-name: float;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  
+}
+.container::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: -1;
+    box-shadow: inset 0 0 500px rgba(255, 255, 255, 0.078); 
+    filter: blur(20px);
+}
+.title{
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0px 20px 0px;
+    text-shadow: 0 0 1px rgb(243, 240, 237),
+    0 0 2px rgba(251, 249, 248, 0.845),
+    0 0 3px rgba(255, 255, 255, 0.986);
+    letter-spacing: 1.5px;
+}
+.inner-container{
+    /* background-color: red; */
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+    color: white;
+    text-shadow: 0 0 1px rgb(243, 240, 237),
+    0 0 1px rgba(251, 249, 248, 0.845),
+    0 0 2px rgba(255, 255, 255, 0.986);
+    letter-spacing: 2px;
+}
+#totoro{
+    width: 100px;
+    position: absolute;
+    top: -45px;
+    left: 10px;
+}
+#gin{
+    width: 120px;
+    position: absolute;
+    top: -52px;
+    right: 10px;
+}
+#username,#password{
+    font-size: 20px;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.174);
+    padding: 5px;
+    color: white;
+    text-shadow: 0 0 1px rgb(243, 240, 237),
+    0 0 1px rgba(251, 249, 248, 0.845),
+    0 0 1px rgba(255, 255, 255, 0.986);
+    letter-spacing: 2px;
+}
+#username:focus, #password:focus{
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142), 
+    0 6px 20px rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.205);
+    border: 1px solid rgba(255, 255, 255, 0.418);
+}
+#pass{
+    margin-top: 10px;
+}
+#login{
+    outline: none;
+    font-size: 20px;
+    padding: 5px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 10px;
+    position: relative;
+}
+
+#login:hover{
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142), 
+  0 6px 20px rgba(255, 255, 255, 0.15);
+}
+.cloud{
+    position: absolute;
+    width: 320px;
+    top: 310px;
+}
+.cloud.one{
+    left: -60px;
+}
+.cloud.two{
+    right: -60px;
+
+}
+.notification {
+    position: fixed;
+    font-size: 24px;
+    width: 30%;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+    background-color: #ff3333b4;
+    border: 2px solid rgba(255, 0, 0, 0.411);
+ 
+}
+.notification::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.notification.show {
+    opacity: 1;
+}

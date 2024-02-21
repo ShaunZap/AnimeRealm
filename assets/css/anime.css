@@ -20,7 +20,38 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background: #ff954e;
   }
-
+  #splash{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle, orange, #ff660e, black);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity .5s ease;
+    z-index: 9999;
+}
+#splash> h1{
+    font-weight: bold;
+    font-size: 80px;
+    animation-name: splash;
+    animation-duration: 1s;
+    -webkit-text-stroke: 1px #070707;
+}
+@keyframes splash {
+  0%   {font-size: 300px; transform: rotate(360deg);}
+  50%  {font-size: 14px; }
+  100% {font-size: 150px;  transform: rotate(0deg);}
+}
+#splash.faded{
+    opacity: 0;
+    z-index: -1;
+    transition: 1s ease;
+}
 /*===========Carousel=============*/
 /*===========Carousel=============*/
 /*===========Carousel=============*/

@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(() => {
+        document.getElementById('splash').classList.toggle('faded');
+    }, 1500);
     getNav();
     getTopAnime();
     getUpcomingAnime();
