@@ -88,6 +88,20 @@ body{
     top: -52px;
     right: 10px;
 }
+#jujutsu{
+    width: 150px;
+    position: absolute;
+    left: -320px;
+    top: 150px;
+    z-index: 1;
+}
+#goku{
+    width: 200px;
+    position: absolute;
+    right: -350px;
+    top: 130px;
+    z-index: 1;
+}
 #username,#password{
     font-size: 20px;
     outline: none;
@@ -140,6 +154,14 @@ body{
 .cloud.two{
     right: -60px;
 
+}
+.cloud.three{
+    left: -400px;
+    top: 200px;
+}
+.cloud.four{
+    right: -400px;
+    top: 200px;
 }
 .notification {
     position: fixed;
