@@ -151,3 +151,45 @@ body{
     font-size: 20px;
     word-spacing: 5px;
 }
+@media screen and (max-width: 850px) {
+    .info-image{
+        position: relative;
+        grid-area: 1/1/8/21;
+        z-index: 1;
+        opacity: 0.2;
+    }
+    .info-content{
+        position: relative;
+        grid-area: 1/1/8/21;
+        /* opacity: 0.5; */
+    }
+    .animan-title, .animan-content{
+        position: relative;
+        z-index: 2;
+    }
+}
+@media screen and (max-width: 600px) {
+    #splash-screen > h1{
+        font-size: 50px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .animan-title, .synopsis-title{
+        font-size: 24px;
+    }
+    .animan-score, .animan-rank{
+        font-size: 20px;
+    }
+    .animan-content{
+        font-size: 18px;
+    }
+    .synopsis{
+        font-size: 14px;
+    }
+    #info-container{
+        width: 95%;
+    }
+    #synopsis-container{
+        width: 95%;
+    }
+}
