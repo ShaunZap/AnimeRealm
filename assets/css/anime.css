@@ -7,6 +7,9 @@
 body{
     background-color: black !important;
 }
+
+/*===========Scrollbar=============*/
+
 ::-webkit-scrollbar {
     width: 15px;
   }
@@ -21,8 +24,6 @@ body{
     background: #ff954e;
   }
 /*===========Carousel=============*/
-/*===========Carousel=============*/
-/*===========Carousel=============*/
 
 #anime-carousel{
   margin-top: 55px;
@@ -32,7 +33,7 @@ body{
     font-size: 20px;
     font-weight: 400;
     padding: 2px 20px 0px 20px;
-    background-color: #ff5900;
+    background: radial-gradient(circle, orange, #ff660e);
     color: white;
     box-shadow: rgba(17, 17, 17, 0.607) 0px 0px 3px 2px inset;
     border: 3px solid black;
@@ -58,8 +59,6 @@ body{
 }
 
 /*=========== Top 10 =============*/
-/*=========== Top 10 =============*/
-/*=========== Top 10 =============*/
 
 .top-10-container{
   position: relative;
@@ -81,6 +80,8 @@ body{
   font-size: 40px;
   color: #ffcb93;
   align-self: center;
+  position: relative;
+  top: 3px;
 }
 .sword{
   width: 60px;
@@ -175,4 +176,38 @@ body{
 }
 .rating{
   color:#ff660e;
+}
+
+@media screen and (max-width: 800px) {
+  .carousel-button{
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 600px) {
+ .carousel-indicators{
+  bottom: -30px !important;
+ }
+ .carousel-caption{
+  bottom: -0.75rem !important;
+ }
+}
+@media screen and (max-width: 500px) {
+  .carousel-button{
+    font-size: 12px;
+    padding: 2px 10px 0px 10px;
+  }
+  .anime-title{
+    font-size: 30px;
+  }
+  .sword{
+    width: 45px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .anime-title{
+    font-size: 22px;
+  }
+  .sword{
+    width: 36px;
+  }
 }

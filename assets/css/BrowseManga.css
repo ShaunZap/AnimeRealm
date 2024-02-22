@@ -142,3 +142,44 @@ body{
   .rating{
     color: #ff4998;
   }
+
+  
+@media screen and (max-width: 900px) {
+  #gintoki-image{
+    width: 45px;
+  }
+  .search-container{
+    top: 130px;
+    width: 85%;
+  }
+  #results-container{
+    margin-top: 150px;
+  }
+}
+@media screen and (max-width: 650px) {
+  #submit{
+    display: none;
+  }
+  #gintoki-image{
+    width: 40px;
+  }
+  .searchbar{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 550px) {
+
+  #gintoki-image{
+    width: 40px;
+    top: -42px;
+  }
+  .search-container{
+    top: 110px;
+  }
+  #results-container{
+    margin-top: 130px;
+  }
+  .searchbar{
+    width: 88%;
+  }
+}

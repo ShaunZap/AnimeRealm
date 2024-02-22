@@ -4,7 +4,18 @@ const tempPass = 'shaun@123';
 const url = `../../pages/anime.html`;
 const notification = document.getElementById("notification");
 const errorMessage = 'Incorrect username or password. Please try again.';
+
 login.addEventListener('click', function(){
+    loginFunction();
+});
+
+document.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        loginFunction();
+    }
+});
+
+function loginFunction() {
     const username = document.getElementById('username').value;
     const userPassword = document.getElementById('password').value;
     if(username == tempUser && userPassword == tempPass) {
@@ -12,7 +23,7 @@ login.addEventListener('click', function(){
     } else {
         showNotification(errorMessage);
     }
-});
+}
 
 function showNotification(message) {
     notification.textContent = message;

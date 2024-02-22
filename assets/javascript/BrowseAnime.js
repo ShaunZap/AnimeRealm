@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', function () {
     else
     getResults(searchQuery);
  })
+ document.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        searchQuery = document.getElementById("search").value;
+        console.log(searchQuery);
+        if(searchQuery == "")
+        console.log("Not Found");
+        else
+        getResults(searchQuery);
+    }
+});
  async function getResults(searchInput){
     const response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${searchInput}`);
     const searchData = await response.json();
