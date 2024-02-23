@@ -143,7 +143,38 @@ body{
 .rating{
   color: #ff660e;
 }
+#animeContainer{
+  position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0px 40px 0px;
+}
+#next{
+  padding: 0px 20px 0px 20px;
+}
+#count{
+  padding: 0px 5px 0px 5px;
+  font-size: 20px;
+  color: white;
+  background: radial-gradient(circle, orange, #ff660e);
+  border-radius: 5px;
+}
+#previous{
+  padding: 0px 5px 0px 5px;
+}
+#next, #previous{
+  font-size: 20px;
+  color: white;
+  background: radial-gradient(circle, orange, #ff660e);
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: .5s all;
+}
 
+#next:active, #previous:active{
+  box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
+}
 @media screen and (max-width: 900px) {
   #gintoki-image{
     width: 45px;

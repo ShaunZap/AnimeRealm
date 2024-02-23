@@ -10,33 +10,52 @@ document.addEventListener('DOMContentLoaded', function () {
     });
  }
 
- let cardContainer = document.getElementById("results-container");          
- cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime"  style="width:100%; opacity:0.7">`
+let currentPage = 1;
+let totalPageNumber;
+let searchpage;
+const cardContainer = document.getElementById("results-container");     
+const animeButtonContainer = document.createElement('div');
+animeButtonContainer.id = "animeContainer";
+document.body.appendChild(animeButtonContainer)     
+cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime"  style="width:100%; opacity:0.7">`
 
  document.getElementById("submit").addEventListener("click", function(){
     searchQuery = document.getElementById("search").value;
+    currentPage = 1;
     console.log(searchQuery);
     if(searchQuery == "")
     console.log("Not Found");
     else
-    getResults(searchQuery);
+    getResults(searchQuery, currentPage);
  })
  document.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         searchQuery = document.getElementById("search").value;
+        currentPage = 1;
         console.log(searchQuery);
         if(searchQuery == "")
         console.log("Not Found");
         else
-        getResults(searchQuery);
+        getResults(searchQuery, currentPage);
     }
 });
- async function getResults(searchInput){
-    const response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${searchInput}`);
+
+ async function getResults(searchInput, page){
+    const response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${searchInput}&page[number]=${page}`);
     const searchData = await response.json();
-    console.log(searchData);
+    console.log(searchData, searchInput, page);
+    searchpage = searchInput;
+    
+    //to get the last page number
+    const url = searchData.links.last;
+    const params = new URLSearchParams(url);
+    const TempPageNumber = params.get("page[number]");
+    totalPageNumber = TempPageNumber;
+    console.log(totalPageNumber)
+    
     if(searchData.meta.count == 0){
         cardContainer.innerHTML = `<img src="../assets/images/notFoundAnime.jpg" alt="Not Found"  style="width:100%; opacity:0.7">`;
+        animeButtonContainer.innerHTML = " ";
     }else{
         cardContainer.innerHTML = "";
         let cards = generateCards(searchData);
@@ -52,5 +71,30 @@ document.addEventListener('DOMContentLoaded', function () {
             window.open(url, '_blank');
         });
     });
+    animeButtonContainer.innerHTML = `
+        <button id="previous" onclick="prevPage()">Previous</button>
+        <div id="count">Page ${currentPage} </div>
+        <button id="next" onclick="nextPage()">Next</button>
+    `
     }   
+ }
+ function nextPage(){
+    console.log("next");
+    if(currentPage < totalPageNumber){
+        currentPage++;
+        getResults(searchpage, currentPage)
+    }
+    else{
+        console.log("over")
+    }
+ }
+ function prevPage(){
+    console.log("prev");
+    if(currentPage > 1){
+        currentPage--;
+        getResults(searchpage, currentPage)
+    }
+    else{
+        console.log("over")
+    }
  }
