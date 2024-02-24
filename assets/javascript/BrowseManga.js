@@ -13,10 +13,16 @@ document.addEventListener('DOMContentLoaded', function () {
  let count = 1;
  let totalOffsetValue;
  let searchpage; 
+
+ const cardContainer = document.getElementById("results-container");          
  const animeButtonContainer = document.createElement('div');
+ const animeButtonContainer2 = document.createElement('div');
  animeButtonContainer.id = "animeContainer";
- document.body.appendChild(animeButtonContainer)  
- let cardContainer = document.getElementById("results-container");          
+ animeButtonContainer2.id = "animeContainer2";
+
+ document.body.appendChild(animeButtonContainer)
+document.body.insertBefore(animeButtonContainer2, cardContainer);
+
  cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Manga" class="d-block" style="width:100%; opacity:0.7">`
 
  document.getElementById("submit").addEventListener("click", function(){
@@ -74,9 +80,14 @@ document.addEventListener('DOMContentLoaded', function () {
         
     });
     animeButtonContainer.innerHTML = `
-    <button id="previous" onclick="prevPage()">Previous</button>
+    <button class="previous" onclick="prevPage()">Previous</button>
     <div id="count">Page ${count} </div>
-    <button id="next" onclick="nextPage()">Next</button>
+    <button class="next" onclick="nextPage()">Next</button>
+`
+    animeButtonContainer2.innerHTML = `
+    <button class="previous" onclick="prevPage()">Previous</button>
+    <div id="count">Page ${count} </div>
+    <button class="next" onclick="nextPage()">Next</button>
 `
     }   
  }
@@ -90,6 +101,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     else{
         console.log("over")
+        const next = document.querySelectorAll(".next");
+        next.forEach(element => {
+            element.disabled = true;
+            element.style.opacity = 0.2;
+        });
     }
  }
  function prevPage(){
@@ -101,5 +117,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     else{
         console.log("over")
+        const prev = document.querySelectorAll(".previous");
+        prev.forEach(element => {
+            element.disabled = true;
+            element.style.opacity = 0.2;
+        });
     }
  }

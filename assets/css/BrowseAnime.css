@@ -24,7 +24,7 @@ body{
   width: 80%;
   margin: 0 auto;
   position: relative;
-  top: 150px;
+  top: 180px;
   display: flex;
   gap: 6px;
   justify-content: end;
@@ -83,6 +83,7 @@ body{
 
 #results-container {
   display: grid;
+  position: relative;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 12px;
   width: 85%;
@@ -90,8 +91,8 @@ body{
   padding: 10px;
   background: radial-gradient(circle, orange, #ff660e);
   border-radius: 5px;
-  margin-top: 200px;
-  position: relative;
+  top: 200px;
+  margin-bottom: 100px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
   0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -148,23 +149,30 @@ body{
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin: 10px 0px 40px 0px;
+  top: 110px;
 }
-#next{
+#animeContainer2{
+  position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  top: 190px;
+}
+.next{
   padding: 0px 20px 0px 20px;
 }
 #count{
   padding: 0px 5px 0px 5px;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   background: radial-gradient(circle, orange, #ff660e);
   border-radius: 5px;
 }
-#previous{
+.previous{
   padding: 0px 5px 0px 5px;
 }
-#next, #previous{
-  font-size: 20px;
+.next, .previous{
+  font-size: 16px;
   color: white;
   background: radial-gradient(circle, orange, #ff660e);
   border: 1px solid white;
@@ -172,7 +180,7 @@ body{
   transition: .5s all;
 }
 
-#next:active, #previous:active{
+.next:active, .previous:active{
   box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
 }
 @media screen and (max-width: 900px) {
@@ -184,7 +192,13 @@ body{
     width: 85%;
   }
   #results-container{
-    margin-top: 150px;
+    top: 150px;
+  }
+  #animeContainer2{
+    top: 140px;
+  }
+  #animeContainer{
+    top: 65px;
   }
 }
 @media screen and (max-width: 650px) {
@@ -201,16 +215,28 @@ body{
 @media screen and (max-width: 550px) {
 
   #gintoki-image{
-    width: 40px;
+    width: 35px;
     top: -42px;
   }
   .search-container{
     top: 110px;
   }
   #results-container{
-    margin-top: 130px;
+    top: 130px;
   }
   .searchbar{
     width: 88%;
+  }
+  #animeContainer2{
+    top: 120px;
+    left: 7%;
+    justify-content: space-between;
+    width: 85%;
+  }
+  #animeContainer{
+    top: 40px;
+  }
+  .next, .previous #count{
+    font-size: 14px;
   }
 }
