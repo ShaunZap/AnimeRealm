@@ -204,7 +204,14 @@ body{
   }
   #top-manga-card-container, #upcoming-card-container{
     width: 85%;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
+  .card-title{
+    font-size: 12px;
+}
+.card-content{
+  font-size: 10px;
+}
 }
 @media screen and (max-width: 350px) {
   .manga-title{

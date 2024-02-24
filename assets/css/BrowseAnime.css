@@ -139,7 +139,8 @@ body{
 .card-content{
   display: flex;
   justify-content: space-around;
-  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-top: auto;
 }
 .rating{
   color: #ff660e;
@@ -224,7 +225,14 @@ body{
   }
   #results-container{
     top: 130px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
+  .card-title{
+    font-size: 12px;
+}
+.card-content{
+  font-size: 10px;
+}
   .searchbar{
     width: 88%;
   }
