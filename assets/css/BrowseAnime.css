@@ -150,6 +150,7 @@ body{
   gap: 10px;
   justify-content: center;
   top: 110px;
+  padding-bottom: 20px;
 }
 #animeContainer2{
   position: relative;

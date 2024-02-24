@@ -202,6 +202,9 @@ body{
   .sword{
     width: 45px;
   }
+  #top-anime-card-container, #upcoming-card-container{
+    width: 85%;
+  }
 }
 @media screen and (max-width: 350px) {
   .anime-title{
