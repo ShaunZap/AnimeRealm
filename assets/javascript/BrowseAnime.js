@@ -77,6 +77,7 @@ cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime" 
             window.open(url, '_blank');
         });
     });
+    document.getElementById('gintoki-image').style.width = '60px';
     animeButtonContainer.innerHTML = `
         <button class="previous" onclick="prevPage()">Previous</button>
         <div id="count">Page ${currentPage} </div>
