@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
 let currentPage = 1;
 let totalPageNumber;
 let searchpage;
+let tempGenre;
+let buttonContent = `
+<button class="previous" onclick="prevPage()">Previous</button>
+<div id="count">Page ${currentPage} </div>
+<button class="next" onclick="nextPage()">Next</button>
+`
 
 const cardContainer = document.getElementById("results-container");     
 const animeButtonContainer = document.createElement('div');
@@ -26,30 +32,37 @@ document.body.insertBefore(animeButtonContainer2, cardContainer);
 cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime"  style="width:100%; opacity:0.7">`
 
  document.getElementById("submit").addEventListener("click", function(){
-    searchQuery = document.getElementById("search").value;
-    currentPage = 1;
-    console.log(searchQuery);
-    if(searchQuery == "")
-    console.log("Not Found");
-    else
-    getResults(searchQuery, currentPage);
+    sendData();
  })
  document.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
-        searchQuery = document.getElementById("search").value;
-        currentPage = 1;
-        console.log(searchQuery);
-        if(searchQuery == "")
-        console.log("Not Found");
-        else
-        getResults(searchQuery, currentPage);
+        sendData();
     }
 });
-
- async function getResults(searchInput, page){
-    const response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${searchInput}&page[number]=${page}`);
+document.getElementById('genre').addEventListener('change', function() {
+    sendData();
+});
+function sendData(){
+    const searchQuery = document.getElementById("search").value;
+    const genre = document.getElementById('genre').value;
+    currentPage = 1;
+    console.log(searchQuery);
+    if(searchQuery == "" && genre == "null")
+    console.log("Not Found");
+    else
+    getResults(searchQuery, currentPage, genre);
+}
+ async function getResults(searchInput, page, genre){
+    let response;
+    tempGenre = genre;
+    if(searchInput != '' && genre == 'null'){
+        response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${searchInput}&page[number]=${page}`);
+    }
+    else if(searchInput == '' && genre != 'null'){
+        response = await fetch(`https://kitsu.io/api/edge/anime?filter[genres]=${genre}&page[number]=${page}`);
+    }
     const searchData = await response.json();
-    console.log(searchData, searchInput, page);
+    console.log(searchData, searchInput, page, genre);
     searchpage = searchInput;
     
     //to get the last page number
@@ -78,23 +91,15 @@ cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime" 
         });
     });
     document.getElementById('gintoki-image').style.width = '60px';
-    animeButtonContainer.innerHTML = `
-        <button class="previous" onclick="prevPage()">Previous</button>
-        <div id="count">Page ${currentPage} </div>
-        <button class="next" onclick="nextPage()">Next</button>
-    `
-    animeButtonContainer2.innerHTML = `
-    <button class="previous" onclick="prevPage()">Previous</button>
-    <div id="count">Page ${currentPage} </div>
-    <button class="next" onclick="nextPage()">Next</button>
-    `
+    animeButtonContainer.innerHTML = buttonContent;
+    animeButtonContainer2.innerHTML = buttonContent;
     }   
  }
  function nextPage(){
     console.log("next");
     if(currentPage < totalPageNumber){
         currentPage++;
-        getResults(searchpage, currentPage)
+        getResults(searchpage, currentPage, tempGenre)
     }
     else{
         console.log("over")
@@ -109,7 +114,7 @@ cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime" 
     console.log("prev");
     if(currentPage > 1){
         currentPage--;
-        getResults(searchpage, currentPage)
+        getResults(searchpage, currentPage, tempGenre)
     }
     else{
         console.log("over")

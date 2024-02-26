@@ -180,11 +180,23 @@ body{
     border-radius: 5px;
     transition: .5s all;
   }
-  
   .next:active, .previous:active{
     box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
   }
-  
+  #genre{
+    font-size: 20px;
+    color: white;
+    background-color: #ff0073;
+    box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 5px 1px inset;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+  }
+  #genre > option{
+    font-size: 20px;
+    background-color: #fc33af;
+  }
 @media screen and (max-width: 900px) {
   #gintoki-image{
     width: 45px !important;
@@ -206,6 +218,12 @@ body{
 @media screen and (max-width: 650px) {
   #submit{
     display: none;
+  }
+  #genre{
+    font-size: 14px;
+  }
+  #genre > option{
+    font-size: 10px;
   }
   #gintoki-image{
     width: 40px !important;

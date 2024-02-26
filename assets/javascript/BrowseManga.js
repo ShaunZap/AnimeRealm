@@ -9,10 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('navbar').innerHTML = html;
     });
  }
+
  let offset = 0;
  let count = 1;
  let totalOffsetValue;
  let searchpage; 
+ let tempGenre;
+
 
  const cardContainer = document.getElementById("results-container");          
  const animeButtonContainer = document.createElement('div');
@@ -26,30 +29,45 @@ document.body.insertBefore(animeButtonContainer2, cardContainer);
  cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Manga" class="d-block" style="width:100%; opacity:0.7">`
 
  document.getElementById("submit").addEventListener("click", function(){
-    searchQuery = document.getElementById("search").value;
-    offset = 0;
-    console.log(searchQuery);
-    if(searchQuery == "")
-        console.log("Does not exist");
-    else
-    getResults(searchQuery, offset);
+    sendData();
  })
  document.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
-        searchQuery = document.getElementById("search").value;
-        offset = 0;
-        console.log(searchQuery);
-        if(searchQuery == "")
-        console.log("Not Found");
-        else
-        getResults(searchQuery, offset);
+        sendData();
     }
 });
- async function getResults(searchInput, page){
-    const response = await fetch(`https://kitsu.io/api/edge/manga?filter[text]=${searchInput}&page[offset]=${page}`);
+document.getElementById('genre').addEventListener('change', function() {
+    sendData();
+});
+
+function sendData(){
+   const searchQuery = document.getElementById("search").value;
+   const genre = document.getElementById('genre').value; 
+    count = 1;
+    offset = 0;
+    console.log(searchQuery);
+    if(searchQuery == "" && genre == "null")
+    console.log("Not Found");
+    else
+    getResults(searchQuery, offset, genre);
+}
+ async function getResults(searchInput, offset, genre){
+    let response;
+    if(searchInput != '' && genre == 'null'){
+        response = await fetch(`https://kitsu.io/api/edge/manga?filter[text]=${searchInput}&page[offset]=${offset}`);
+    }
+    else if(searchInput == '' && genre != 'null'){
+        offset = offset+10;
+        response = await fetch(`https://kitsu.io/api/edge/manga?filter[genres]=${genre}&page[offset]=${offset}`);
+    }
+    else if(searchInput != '' && genre != 'null'){
+        offset = offset+10;
+        response = await fetch(`https://kitsu.io/api/edge/manga?filter[text]=${searchInput}&page[offset]=${offset}`);
+    }
     const searchData = await response.json();
-    console.log(searchData, searchInput, page);
+    console.log(searchData, searchInput, offset);
     searchpage = searchInput;
+    tempGenre = genre;
 
     //to get the last page number
     const url = searchData.links.last;
@@ -79,17 +97,15 @@ document.body.insertBefore(animeButtonContainer2, cardContainer);
         });
         
     });
+    let buttonContent = `
+    <button class="previous" onclick="prevPage()">Previous</button>
+    <div id="count">Page ${count} </div>
+    <button class="next" onclick="nextPage()">Next</button>
+    `
+    
     document.getElementById('gintoki-image').style.width = '60px';
-    animeButtonContainer.innerHTML = `
-    <button class="previous" onclick="prevPage()">Previous</button>
-    <div id="count">Page ${count} </div>
-    <button class="next" onclick="nextPage()">Next</button>
-`
-    animeButtonContainer2.innerHTML = `
-    <button class="previous" onclick="prevPage()">Previous</button>
-    <div id="count">Page ${count} </div>
-    <button class="next" onclick="nextPage()">Next</button>
-`
+    animeButtonContainer.innerHTML = buttonContent
+    animeButtonContainer2.innerHTML = buttonContent
     }   
  }
 
@@ -98,7 +114,7 @@ document.body.insertBefore(animeButtonContainer2, cardContainer);
     if(offset < totalOffsetValue){
        offset = offset+10;
        count++;
-        getResults(searchpage, offset)
+        getResults(searchpage, offset, tempGenre)
     }
     else{
         console.log("over")
@@ -114,7 +130,7 @@ document.body.insertBefore(animeButtonContainer2, cardContainer);
     if(offset > 0){
         offset = offset-10;
        count--;
-        getResults(searchpage, offset)
+        getResults(searchpage, offset, tempGenre)
     }
     else{
         console.log("over")
