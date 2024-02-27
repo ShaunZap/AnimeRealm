@@ -71,101 +71,82 @@ body{
 }
 .info-image{
     grid-area: 1/1/8/11;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: #ffa36e 0px 0px 10px 1px;
-    border: 1px solid white;
-
 }
 .info-content{
     grid-area: 1/11/8/21 ;
     background-color: rgb(40, 40, 40);
     color: white;
-    border: 2px solid #ffffff;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: #fc7d33 0px 0px 10px 1px;
-
+    border: 2px solid #232323;
+    box-shadow: #000000 0px 0px 10px 1px inset;
 }
 .animan-content{
     width: 100%;
     padding: 10px;
     font-size: 20px;
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5),
-             0 0 2px rgba(255, 255, 255, 0.5),
-             0 0 3px rgba(255, 255, 255, 0.5);
     line-height: 1.8;
 }
 .animan-title{
-    background: radial-gradient(circle, orange, #ff660e);
+    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
     width: 100%;
     text-align: center;
     font-size: 30px;
     padding: 5px;
     font-weight: bold;
-    border-bottom: 2px solid white;
-    box-shadow: #fc7d33 0px 0px 10px 1px;
     -webkit-text-stroke: 1px #070707a4;
 }
 .animan-score{
-    text-shadow: 0 0 2px rgb(255, 166, 82),
-    0 0 3px rgba(211, 100, 36, 0.845),
-    0 0 4px rgba(255, 119, 0, 0.986);
     font-size: 24px;
     font-weight: bold;
+    background: -webkit-linear-gradient(white, orange, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .animan-rank{
-    text-shadow: 0 0 2px rgb(255, 166, 82),
-    0 0 3px rgba(211, 100, 36, 0.845),
-    0 0 4px rgba(255, 119, 0, 0.986);
     font-size: 24px;
     font-weight: bold;
+    background: -webkit-linear-gradient(white, orange, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .animan-trailer {
     text-decoration: none;
     color: #ffffff;
-    background-color: #ff660e;
+    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
     padding: 3px 8px 3px 8px;
     border: 2px solid #ff660e;
     border-radius: 5px;
     margin-top: 10px;
-    box-shadow: #fc7d33 0px 0px 2px 1px;
-    text-shadow: 0 0 2px rgb(255, 166, 82),
-                 0 0 4px rgba(211, 100, 36, 0.845),
-                 0 0 6px rgba(255, 119, 0, 0.986);
     transition: 0.3s all;
 }
-
 .animan-trailer:hover {
     text-decoration: none;
     cursor: pointer;
     border: 2px solid #ffffff;
     position: relative;
 }
-
-
 #synopsis-container{
     width: 90%;
     margin: 0 auto;
     color: white;
     background-color: rgb(40, 40, 40);
-    border: 2px solid #ffffff;
-    border-radius: 10px;
+    border: 2px solid #232323;
+    box-shadow: #000000 0px 0px 10px 1px inset;
+    border-radius: 5px;
     overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: #fc7d33 0px 0px 10px 1px;
-
 }
 .synopsis-title{
     width: 100%;
     color: #ffffff;
     text-align: center;
     font-size: 30px;
-    background: radial-gradient(circle, orange, #ff660e);
+    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
     font-weight: bold;
     padding: 5px;
-    border-bottom: 2px solid white;
-    box-shadow: #fc7d33 0px 0px 10px 1px;
     -webkit-text-stroke: 1px #070707a4;
 }
 .synopsis{
@@ -173,7 +154,70 @@ body{
     font-size: 20px;
     word-spacing: 5px;
 }
+#title{
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    font-size: 30px;
+    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
+    font-weight: bold;
+    padding: 5px;
+    -webkit-text-stroke: 1px #070707a4;
+}
+#episodeList-container{
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 2px solid #303030;
+    box-shadow: #000000 0px 0px 10px 1px inset;
+    overflow: hidden;
+}
+.accordion-button{
+    background-color: #1e1e1e !important;
+    color: white !important;
+}
+.accordion-item{
+    background-color: #171717 !important;
+    color: rgb(176, 176, 176) !important;
+    border-bottom: 1px solid grey !important;
 
+}
+.accordion-button.collapsed::after, .accordion-button::after{
+    background-color: #ff660e !important;
+    border-radius: 2px !important;
+}
+#pagination-container{
+    display: flex;
+    position: relative;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#next{
+    padding: 0px 20px 0px 20px;
+  }
+  #count{
+    padding: 0px 5px 0px 5px;
+    font-size: 16px;
+    color: white;
+    background-color: #ff660e;
+    border-radius: 1px;
+  }
+  #previous{
+    padding: 0px 5px 0px 5px;
+  }
+  #next, #previous{
+    font-size: 16px;
+    color: white;
+    background-color: #ff660e;
+    border: none;
+    border-radius: 1px;
+    transition: .5s all;
+  }
+  #next:active, #previous:active{
+    box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
+  }
 @media screen and (max-width: 850px) {
     .info-image{
         position: relative;
@@ -184,7 +228,6 @@ body{
     .info-content{
         position: relative;
         grid-area: 1/1/8/21;
-        /* opacity: 0.5; */
     }
     .animan-title, .animan-content{
         position: relative;
@@ -197,7 +240,7 @@ body{
     }
 }
 @media screen and (max-width: 500px) {
-    .animan-title, .synopsis-title{
+    .animan-title, .synopsis-title, #title{
         font-size: 24px;
     }
     .animan-score, .animan-rank{

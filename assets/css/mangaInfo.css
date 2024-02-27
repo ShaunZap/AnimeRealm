@@ -71,55 +71,46 @@ body{
 }
 .info-image{
     grid-area: 1/1/8/11;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: #ff6eca 0px 0px 10px 1px;
-    border: 1px solid white;
-
 }
 .info-content{
     grid-area: 1/11/8/21 ;
     background-color: rgb(40, 40, 40);
     color: white;
-    border: 2px solid #ffffff;
-    border-radius: 10px;
+    border: 2px solid #232323;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: #ff6eca 0px 0px 10px 1px;
-
+    box-shadow: #000000 0px 0px 10px 1px inset;
 }
 .animan-content{
     width: 100%;
     padding: 10px;
     font-size: 20px;
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5),
-             0 0 2px rgba(255, 255, 255, 0.5),
-             0 0 3px rgba(255, 255, 255, 0.5);
     line-height: 2;
 }
 .animan-title{
-    background: radial-gradient(circle, #ff6eca, #ff0073);
+    background: radial-gradient(circle,  #ff0073, #ff6eca);
     width: 100%;
     text-align: center;
     font-size: 30px;
     padding: 5px;
     font-weight: bold;
-    border-bottom: 2px solid white;
-    box-shadow: #ff6eca 0px 0px 10px 1px;
     -webkit-text-stroke: 1px #070707a4;
 }
 .animan-score{
-    text-shadow: 0 0 3px rgb(255, 82, 197),
-    0 0 3px rgba(211, 36, 173, 0.845),
-    0 0 5px rgba(255, 0, 136, 0.986);
     font-size: 26px;
     font-weight: bold;
+    background: -webkit-linear-gradient(white, pink, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .animan-rank{
-    text-shadow: 0 0 3px rgb(255, 82, 197),
-    0 0 3px rgba(211, 36, 173, 0.845),
-    0 0 5px rgba(255, 0, 136, 0.986);
     font-size: 26px;
     font-weight: bold;
+    background: -webkit-linear-gradient(white, pink, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #synopsis-container{
@@ -127,11 +118,11 @@ body{
     margin: 0 auto;
     color: white;
     background-color: rgb(40, 40, 40);
-    border: 2px solid #ffffff;
-    border-radius: 10px;
+    border: 2px solid #232323;
+    box-shadow: #000000 0px 0px 10px 1px inset;
+    border-radius: 5px;
     overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: #ff6eca 0px 0px 10px 1px;
 
 }
 .synopsis-title{
@@ -139,11 +130,9 @@ body{
     color: #ffffff;
     text-align: center;
     font-size: 30px;
-    background: radial-gradient(circle, #ff6eca, #ff0073);
+    background: radial-gradient(circle, #ff0073, #ff6eca);
     font-weight: bold;
     padding: 5px;
-    border-bottom: 2px solid white;
-    box-shadow: #ff6eca 0px 0px 10px 1px;
     -webkit-text-stroke: 1px #070707a4;
 }
 .synopsis{
@@ -161,7 +150,6 @@ body{
     .info-content{
         position: relative;
         grid-area: 1/1/8/21;
-        /* opacity: 0.5; */
     }
     .animan-title, .animan-content{
         position: relative;

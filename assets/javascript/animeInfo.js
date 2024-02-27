@@ -66,4 +66,68 @@ async function displayInfo(id, type) {
    <div class="synopsis-title">Synopsis</div>
    <div class="synopsis">${synopsis}</div>
    `;
+
+   const episodeListLink = data.data.relationships.episodes.links.related;
+//    console.log(episodeListLink);
+   getEpisodeList(episodeListLink)
+}
+
+let currentPage = 1;
+let currentNextLink, currentPrevLink;
+
+async function getEpisodeList(link) {
+    const response = await fetch(`${link}`);
+    const data = await response.json();
+    currentNextLink = data.links.next;
+    currentPrevLink = data.links.prev;
+
+    const animeAccordian = document.getElementById('anime-accordian');
+    animeAccordian.innerHTML = " ";
+    data.data.forEach((episode) => {
+        const episodeInfo = episode.attributes;
+        const episodeTitle = episodeInfo.canonicalTitle || episodeInfo.titles.en_us || episodeInfo.titles.en_jp;
+        const episodeSummary = episodeInfo.description;
+        const episodeNumber = episodeInfo.number;
+        console.log(episodeInfo)
+        animeAccordian.innerHTML += `
+        <div class="accordion-item ">
+        <h2 class="accordion-header" id="flush-heading${episodeNumber}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${episodeNumber}" aria-expanded="false" aria-controls="flush-collapse${episodeNumber}">
+             Episode ${episodeNumber} : ${episodeTitle}
+            </button>
+        </h2>
+        <div id="flush-collapse${episodeNumber}" class="accordion-collapse collapse" aria-labelledby="flush-heading${episodeNumber}" data-bs-parent="#anime-accordian">
+            <div class="accordion-body">${episodeSummary}</div>
+        </div>
+    </div>
+      `;
+    });
+    const pagination = document.getElementById("pagination-container");
+    pagination.innerHTML = `
+        <button id="previous" onclick="previous()">Previous</button>
+            <div id="count">Page: ${currentPage}</div>
+        <button id="next" onclick="next()">Next</button>
+    `;
+}
+
+function next() {
+    if (currentNextLink) {
+        currentPage++;
+        getEpisodeList(currentNextLink);
+    } else {
+        const next = document.getElementById('next')
+        next.style.opacity = 0.4;
+        next.disabled = true;
+    }
+}
+
+function previous() {
+    if (currentPrevLink) {
+        currentPage--;
+        getEpisodeList(currentPrevLink);
+    } else {
+        const previous = document.getElementById('previous')
+        previous.style.opacity = 0.4;
+        previous.disabled = true;
+    }
 }

@@ -14,11 +14,6 @@ let currentPage = 1;
 let totalPageNumber;
 let searchpage;
 let tempGenre;
-let buttonContent = `
-<button class="previous" onclick="prevPage()">Previous</button>
-<div id="count">Page ${currentPage} </div>
-<button class="next" onclick="nextPage()">Next</button>
-`
 
 const cardContainer = document.getElementById("results-container");     
 const animeButtonContainer = document.createElement('div');
@@ -32,25 +27,36 @@ document.body.insertBefore(animeButtonContainer2, cardContainer);
 cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime"  style="width:100%; opacity:0.7">`
 
  document.getElementById("submit").addEventListener("click", function(){
+    document.getElementById('genre').value = "null";
     sendData();
  })
  document.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
+        document.getElementById('genre').value = "null";
         sendData();
     }
 });
 document.getElementById('genre').addEventListener('change', function() {
-    sendData();
+    document.getElementById("search").value = " ";
+    sendDataByGenre();
 });
 function sendData(){
     const searchQuery = document.getElementById("search").value;
-    const genre = document.getElementById('genre').value;
     currentPage = 1;
     console.log(searchQuery);
-    if(searchQuery == "" && genre == "null")
+    if(searchQuery == "")
     console.log("Not Found");
     else
-    getResults(searchQuery, currentPage, genre);
+    getResults(searchQuery, currentPage, "null");
+}
+function sendDataByGenre(){
+    const genre = document.getElementById('genre').value;
+    currentPage = 1;
+    console.log(genre);
+    if(genre == "null")
+    console.log("Not Selected");
+    else
+    getResults("", currentPage, genre);
 }
  async function getResults(searchInput, page, genre){
     let response;
@@ -91,6 +97,12 @@ function sendData(){
         });
     });
     document.getElementById('gintoki-image').style.width = '60px';
+
+    const buttonContent = `
+    <button class="previous" onclick="prevPage()">Previous</button>
+    <div id="count">Page ${currentPage} </div>
+    <button class="next" onclick="nextPage()">Next</button>
+    `
     animeButtonContainer.innerHTML = buttonContent;
     animeButtonContainer2.innerHTML = buttonContent;
     }   

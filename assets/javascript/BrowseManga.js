@@ -29,28 +29,41 @@ document.body.insertBefore(animeButtonContainer2, cardContainer);
  cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Manga" class="d-block" style="width:100%; opacity:0.7">`
 
  document.getElementById("submit").addEventListener("click", function(){
+    document.getElementById('genre').value = "null";
     sendData();
  })
  document.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
+        document.getElementById('genre').value = "null";
         sendData();
     }
 });
 document.getElementById('genre').addEventListener('change', function() {
-    sendData();
+    document.getElementById("search").value = " ";
+    sendDataByGenre();
 });
 
 function sendData(){
    const searchQuery = document.getElementById("search").value;
-   const genre = document.getElementById('genre').value; 
     count = 1;
     offset = 0;
     console.log(searchQuery);
-    if(searchQuery == "" && genre == "null")
+    if(searchQuery == "")
     console.log("Not Found");
     else
-    getResults(searchQuery, offset, genre);
+    getResults(searchQuery, offset, "null");
 }
+function sendDataByGenre(){
+    const genre = document.getElementById('genre').value;
+    count = 1;
+    offset = 0;
+    console.log(genre);
+    if(genre == "null")
+    console.log("Not Selected");
+    else
+    getResults("", offset, genre);
+}
+
  async function getResults(searchInput, offset, genre){
     let response;
     if(searchInput != '' && genre == 'null'){
