@@ -90,25 +90,25 @@ body{
     line-height: 2;
 }
 .animan-title{
-    background: radial-gradient(circle,  #ff0073, #ff6eca);
+    background: radial-gradient(circle,  #ff6eca, #ff0073);
     width: 100%;
     text-align: center;
     font-size: 30px;
     padding: 5px;
     font-weight: bold;
-    -webkit-text-stroke: 1px #070707a4;
+    color: #000000;
 }
 .animan-score{
     font-size: 26px;
     font-weight: bold;
-    background: -webkit-linear-gradient(white, pink, white);
+    background: -webkit-linear-gradient(white, pink, maroon);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .animan-rank{
     font-size: 26px;
     font-weight: bold;
-    background: -webkit-linear-gradient(white, pink, white);
+    background: -webkit-linear-gradient(white, pink, maroon);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -127,13 +127,12 @@ body{
 }
 .synopsis-title{
     width: 100%;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
     font-size: 30px;
-    background: radial-gradient(circle, #ff0073, #ff6eca);
+    background: radial-gradient(circle,#ff6eca, #ff0073);
     font-weight: bold;
     padding: 5px;
-    -webkit-text-stroke: 1px #070707a4;
 }
 .synopsis{
     padding: 20px;

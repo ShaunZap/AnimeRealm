@@ -90,13 +90,13 @@ body{
     line-height: 1.8;
 }
 .animan-title{
-    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
+    background: radial-gradient(circle, orange, #ff660e);
     width: 100%;
     text-align: center;
+    color: rgb(40, 40, 40);
     font-size: 30px;
     padding: 5px;
     font-weight: bold;
-    -webkit-text-stroke: 1px #070707a4;
 }
 .animan-score{
     font-size: 24px;
@@ -114,11 +114,12 @@ body{
 }
 .animan-trailer {
     text-decoration: none;
-    color: #ffffff;
-    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
+    color: #000000;
+    background: radial-gradient(circle, orange, #ff660e);
     padding: 3px 8px 3px 8px;
     border: 2px solid #ff660e;
     border-radius: 5px;
+    font-weight: bold;
     margin-top: 10px;
     transition: 0.3s all;
 }
@@ -141,13 +142,12 @@ body{
 }
 .synopsis-title{
     width: 100%;
-    color: #ffffff;
+    color: rgb(40, 40, 40);
     text-align: center;
     font-size: 30px;
-    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
+    background: radial-gradient(circle, orange, #ff660e);
     font-weight: bold;
     padding: 5px;
-    -webkit-text-stroke: 1px #070707a4;
 }
 .synopsis{
     padding: 20px;
@@ -156,13 +156,12 @@ body{
 }
 #title{
     width: 100%;
-    color: #ffffff;
+    color: rgb(40, 40, 40);
     text-align: center;
     font-size: 30px;
-    background: radial-gradient(circle, #ff660e, rgb(255, 100, 43));
+    background: radial-gradient(circle, orange, #ff660e);
     font-weight: bold;
     padding: 5px;
-    -webkit-text-stroke: 1px #070707a4;
 }
 #episodeList-container{
     width: 90%;
@@ -175,6 +174,7 @@ body{
 .accordion-button{
     background-color: #1e1e1e !important;
     color: white !important;
+    padding: 20px !important;
 }
 .accordion-item{
     background-color: #171717 !important;
@@ -252,10 +252,7 @@ body{
     .synopsis{
         font-size: 14px;
     }
-    #info-container{
-        width: 95%;
-    }
-    #synopsis-container{
+    #info-container, #synopsis-container, #episodeList-container{
         width: 95%;
     }
 }
