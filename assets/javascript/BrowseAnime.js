@@ -30,7 +30,7 @@ cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime" 
     document.getElementById('genre').value = "null";
     sendData();
  })
- document.addEventListener('keypress', function(event) {
+ document.getElementById('search').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         document.getElementById('genre').value = "null";
         sendData();
