@@ -37,7 +37,7 @@ cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime" 
     }
 });
 document.getElementById('genre').addEventListener('change', function() {
-    document.getElementById("search").value = " ";
+    // document.getElementById("search").value = " ";
     sendDataByGenre();
 });
 function sendData(){
