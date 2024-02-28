@@ -189,31 +189,32 @@ body{
 #pagination-container{
     display: flex;
     position: relative;
-    gap: 5px;
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 20px;
 }
-#next{
-    padding: 0px 20px 0px 20px;
-  }
   #count{
     padding: 0px 5px 0px 5px;
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     background-color: #ff660e;
-    border-radius: 1px;
-  }
-  #previous{
-    padding: 0px 5px 0px 5px;
   }
   #next, #previous{
-    font-size: 16px;
+    font-size: 18px;
     color: white;
-    background-color: #ff660e;
+    background-color: #ff7e0e;
     border: none;
-    border-radius: 1px;
+    padding: 0px 5px 0px 5px;
     transition: .5s all;
+    font-weight: bold;
+  }
+  #previous{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  #next{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
   #next:active, #previous:active{
     box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;

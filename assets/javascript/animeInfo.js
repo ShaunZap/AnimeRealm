@@ -104,9 +104,9 @@ async function getEpisodeList(link) {
     });
     const pagination = document.getElementById("pagination-container");
     pagination.innerHTML = `
-        <button id="previous" onclick="previous()">Previous</button>
+        <button id="previous" onclick="previous()"><<</button>
             <div id="count">Page: ${currentPage}</div>
-        <button id="next" onclick="next()">Next</button>
+        <button id="next" onclick="next()">>></button>
     `;
 }
 
