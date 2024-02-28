@@ -217,10 +217,10 @@ body{
 }
 @media screen and (max-width: 650px) {
   #submit{
-    display: none;
+    font-size: 10px;
   }
   #genre{
-    font-size: 14px;
+    font-size: 10px;
   }
   #genre > option{
     font-size: 10px;
@@ -230,13 +230,13 @@ body{
   }
   .searchbar{
     width: 90%;
+    gap: 2px;
   }
 }
 @media screen and (max-width: 550px) {
 
   #gintoki-image{
-    width: 35px !important;
-    top: -42px;
+    display: none;
   }
   .search-container{
     top: 110px;
@@ -252,7 +252,7 @@ body{
   font-size: 10px;
 }
   .searchbar{
-    width: 88%;
+    width: 100%;
   }
   #animeContainer2{
     top: 120px;
