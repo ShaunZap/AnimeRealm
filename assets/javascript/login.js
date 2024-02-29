@@ -37,9 +37,9 @@ if (document.getElementById('register')) {
 function loginFunction() {
     const username = document.getElementById('username').value;
     const userPassword = document.getElementById('password').value;
-    const tempUser = sessionStorage.getItem('tempUser');
-    const tempPass = sessionStorage.getItem('tempPass');
-    // console.log("username:",username,"password:",userPassword,'tempuser:',tempUser,'tempPass',tempPass);
+    const tempUser = localStorage.getItem('tempUser');
+    const tempPass = localStorage.getItem('tempPass');
+    console.log("username:",username,"password:",userPassword,'tempuser:',tempUser,'tempPass',tempPass);
     if ((username == tempUser && userPassword == tempPass) || (username == defaultUser && userPassword == defaultPassword)) {
         history.replaceState(null, '', window.location.href = animeUrl);
     } else {
@@ -53,8 +53,8 @@ function registerFuntion() {
     const email = document.getElementById('email').value;
     const confirmPass = document.getElementById('confirm-passwordR').value;
 
-    sessionStorage.setItem('tempUser', userR);
-    sessionStorage.setItem('tempPass', passR);
+    localStorage.setItem('tempUser', userR);
+    localStorage.setItem('tempPass', passR);
     // console.log('tempuser:',tempUser,'tempPass',tempPass);
     if (passR == confirmPass && passR != ' ' && email != ''){
     // console.log('tempuser:',tempUser,'tempPass',tempPass);
