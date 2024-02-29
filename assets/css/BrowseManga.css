@@ -240,10 +240,12 @@ body{
   }
   .search-container{
     top: 110px;
+    width: 95%;
   }
   #results-container{
     top: 130px;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    width: 95%;
   }
   .card-title{
     font-size: 12px;
