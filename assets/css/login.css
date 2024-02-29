@@ -5,7 +5,7 @@
     font-family: "Libre Baskerville", serif;
 }
 body{
-    background: radial-gradient(circle, rgb(249, 154, 154),#ff4656, rgb(254, 49, 97), #ff660e, rgb(255, 136, 51));
+    background: radial-gradient(circle, rgb(249, 154, 154), #ff5560 25%, #ff4660 50%, #ff6630 75%, rgb(255, 136, 51));
     height: 100vh; 
     margin: 0; 
     border: 5px solid black;
@@ -53,13 +53,13 @@ body{
 .title{
     width: 100%;
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 30px;
     font-weight: bold;
+    text-shadow: 0 0 1px rgb(0, 0, 0),
+    0 0 1px rgba(251, 249, 248, 0.845),
+    0 0 1px rgba(255, 255, 255, 0.986);
     margin: 20px 0px 20px 0px;
-    text-shadow: 0 0 1px rgb(243, 240, 237),
-    0 0 2px rgba(251, 249, 248, 0.845),
-    0 0 3px rgba(255, 255, 255, 0.986);
     letter-spacing: 1.5px;
 }
 .inner-container{
@@ -71,7 +71,7 @@ body{
     gap: 10px;
     font-size: 20px;
     color: white;
-    text-shadow: 0 0 1px rgb(243, 240, 237),
+    text-shadow: 0 0 1px rgb(255, 255, 255),
     0 0 1px rgba(251, 249, 248, 0.845),
     0 0 2px rgba(255, 255, 255, 0.986);
     letter-spacing: 2px;
@@ -259,6 +259,7 @@ body{
 @media screen and (max-width: 600px) {
     .container{
         width: 70%;
+        animation: none;
     }
     body{
         border: none;
