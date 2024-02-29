@@ -48,20 +48,25 @@ function loginFunction() {
 }
 
 function registerFuntion() {
-    const userR = document.getElementById('usernameR').value;
-    const passR = document.getElementById('passwordR').value;
+    let userR = document.getElementById('usernameR').value;
+    let passR = document.getElementById('passwordR').value;
     const email = document.getElementById('email').value;
     const confirmPass = document.getElementById('confirm-passwordR').value;
 
-    sessionStorage.setItem('tempUser', userR);
-    sessionStorage.setItem('tempPass', passR);
     // console.log('tempuser:',tempUser,'tempPass',tempPass);
-    if (passR == confirmPass && passR != ' ' && email != ''){
-    // console.log('tempuser:',tempUser,'tempPass',tempPass);
+    if (passR == confirmPass && passR !== ' ' && email !== '' && userR !== '' && confirmPass !== ''){
+        // console.log('tempuser:',tempUser,'tempPass',tempPass);
+        sessionStorage.setItem('tempUser', userR);
+        sessionStorage.setItem('tempPass', passR);
         window.location.href = loginurl;
     }
-    else
+    else{
         showNotification(registerError);
+        userR = 'null';
+        passR = 'null';
+        sessionStorage.setItem('tempUser', userR);
+        sessionStorage.setItem('tempPass', passR);
+    }
 }
 
 function showNotification(message) {
