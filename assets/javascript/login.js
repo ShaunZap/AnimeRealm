@@ -9,8 +9,10 @@ const registerError = 'Passwords don\'t match or fields are empty. Fill all fiel
 function addKeyPressListener() {
     document.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
-            loginFunction();
-            registerFuntion();
+            if (window.location.pathname.includes("registration")) 
+                registerFuntion();
+            else
+                loginFunction();
         }
     });
 }
