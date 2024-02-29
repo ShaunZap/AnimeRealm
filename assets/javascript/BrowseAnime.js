@@ -81,6 +81,7 @@ function sendDataByGenre(){
     if(searchData.meta.count == 0){
         cardContainer.innerHTML = `<img src="../assets/images/notFoundAnime.jpg" alt="Not Found"  style="width:100%; opacity:0.7">`;
         animeButtonContainer.innerHTML = " ";
+        animeButtonContainer2.innerHTML = " ";
     }else{
         cardContainer.innerHTML = "";
         let cards = generateCards(searchData);
