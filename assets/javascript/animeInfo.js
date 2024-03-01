@@ -24,6 +24,14 @@ async function displayInfo(id, type) {
     const data = await response.json();
     console.log(id, type);
     console.log(data);
+    console.log('id:', id);
+    console.log('type:', type);
+    console.log('data:', data);
+
+    if (!data.data || !data.data.attributes) {
+        console.error('Invalid data format:', data);
+        return;
+    }
     
     const infoResult = data.data.attributes;
     const animanTitle = infoResult.titles.en || infoResult.titles.en_us || infoResult.titles.en_jp;

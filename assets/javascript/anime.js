@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
  }
  async function getUpcomingAnime(){
-    const topResponse = await fetch(`https://kitsu.io/api/edge/anime?filter[status]=upcoming&page[limit]=8`);
+    const topResponse = await fetch(`https://kitsu.io/api/edge/anime?filter[status]=current&page[limit]=8`);
     const topData = await topResponse.json();
     console.log(topData);
     let cards = generateCards(topData);
