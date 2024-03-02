@@ -186,6 +186,15 @@ body{
     background-color: #ff660e !important;
     border-radius: 2px !important;
 }
+.accordion-button:focus{
+    background: radial-gradient(circle, orange, #ff660e);
+    color: rgb(40, 40, 40) !important;
+    box-shadow: orange 0px 0px 10px 1px inset !important;
+    font-weight: bold;
+}
+.accordion-button:hover{
+    background-color: #292929 !important;
+}
 #pagination-container{
     display: flex;
     position: relative;
@@ -196,13 +205,16 @@ body{
   #count{
     padding: 0px 5px 0px 5px;
     font-size: 18px;
-    color: white;
-    background-color: #ff660e;
+    color: rgb(40, 40, 40) ;
+    background: radial-gradient(circle, orange, #ff660e);
+    border-left: 1px solid rgb(40, 40, 40) ;
+    border-right: 1px solid rgb(40, 40, 40) ;
+    font-weight: bold;
   }
   #next, #previous{
     font-size: 18px;
-    color: white;
-    background-color: #ff7e0e;
+    color: rgb(40, 40, 40) ;
+    background: radial-gradient(circle, orange, #ff660e);
     border: none;
     padding: 0px 5px 0px 5px;
     transition: .5s all;

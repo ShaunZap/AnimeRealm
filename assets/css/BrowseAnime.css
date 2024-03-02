@@ -166,18 +166,19 @@ body{
 #count{
   padding: 0px 5px 0px 5px;
   font-size: 16px;
-  color: white;
+  color: rgb(40,40,40);
   background: radial-gradient(circle, orange, #ff660e);
   border-radius: 5px;
+  border: 1px solid rgb(100, 100, 100);
 }
 .previous{
   padding: 0px 5px 0px 5px;
 }
 .next, .previous{
   font-size: 16px;
-  color: white;
+  color: rgb(40,40,40);
   background: radial-gradient(circle, orange, #ff660e);
-  border: 1px solid white;
+  border: 1px solid rgb(100, 100, 100);
   border-radius: 5px;
   transition: .5s all;
 }
