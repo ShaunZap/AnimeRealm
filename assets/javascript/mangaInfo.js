@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //Using Kitsu Api to get the manga based ont he type and the id
     const response = await fetch(`https://kitsu.io/api/edge/${type}/${id}`);
     const data = await response.json();
-    console.log(id, type);
+    // console.log(id, type);
     console.log(data);
     
     //storing each property from the object for more readability
@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //since kitsu doesnt provide it 
     const response2 = await fetch(`https://api.jikan.moe/v4/manga?q=${animanTitle}&limit=1`);
     const data2 = await response2.json();
-    console.log(data2);
+    const background = data2.data[0].background;
+    console.log(data2,background);
     const authors = data2.data[0].authors;
     if (authors && authors.length > 0) {
         console.log(authors[0].name);
@@ -80,5 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
    synopsisContainer.innerHTML = `
    <div class="synopsis-title">Synopsis</div>
    <div class="synopsis">${synopsis}</div>
+   `;
+   backgroundContainer = document.getElementById("background-container");
+   backgroundContainer.innerHTML = `
+   <div class="background-title">Background</div>
+   <div class="background-content">${background}</div>
    `;
 }

@@ -113,8 +113,15 @@ body{
     -webkit-text-fill-color: transparent;
 }
 
-#synopsis-container{
+#container{
     width: 90%;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+#synopsis-container, #background-container{
+    width: 100%;
     margin: 0 auto;
     color: white;
     background-color: rgb(40, 40, 40);
@@ -122,21 +129,20 @@ body{
     box-shadow: #000000 0px 0px 10px 1px inset;
     border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 20px;
 
 }
-.synopsis-title{
+.synopsis-title, .background-title{
     width: 100%;
     color: #000000;
     text-align: center;
-    font-size: 30px;
+    font-size: 28px;
     background: radial-gradient(circle,#ff6eca, #ff0073);
     font-weight: bold;
     padding: 5px;
 }
-.synopsis{
+.synopsis, .background-content{
     padding: 20px;
-    font-size: 20px;
+    font-size: 16px;
     word-spacing: 5px;
 }
 @media screen and (max-width: 850px) {
@@ -153,6 +159,12 @@ body{
     .animan-title, .animan-content{
         position: relative;
         z-index: 2;
+    }
+    #container{
+        flex-direction: column;
+    }
+    #container{
+        width: 95%;
     }
 }
 @media screen and (max-width: 600px) {
@@ -174,9 +186,6 @@ body{
         font-size: 14px;
     }
     #info-container{
-        width: 95%;
-    }
-    #synopsis-container{
         width: 95%;
     }
 }
