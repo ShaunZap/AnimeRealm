@@ -1,10 +1,10 @@
-const defaultUser = 'admin';
-const defaultPassword = 'admin';
+
 const animeUrl = `../../pages/anime.html`;
-const loginurl = `../../index.html`;
+const loginurl = `/`;
 const notification = document.getElementById("notification");
 const errorMessage = 'Incorrect username or password. Please try again.';
 const registerError = 'Passwords don\'t match or fields are empty. Fill all fields.';
+// const User = require('User');
 
 function addKeyPressListener() {
     document.addEventListener('keypress', function (event) {
@@ -34,38 +34,47 @@ if (document.getElementById('register')) {
     addKeyPressListener();
 }
 
-function loginFunction() {
+async function loginFunction() {
     const username = document.getElementById('username').value;
     const userPassword = document.getElementById('password').value;
-    const tempUser = sessionStorage.getItem('tempUser');
-    const tempPass = sessionStorage.getItem('tempPass');
-    console.log("username:",username,"password:",userPassword,'tempuser:',tempUser,'tempPass',tempPass);
-    if ((username == tempUser && userPassword == tempPass) || (username == defaultUser && userPassword == defaultPassword)) {
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: userPassword })
+    });
+    if (response.ok) {
+        const token = await response.json(); // assuming server sends token in response
+        localStorage.setItem('token', token);
+        // console.log(token);
         history.replaceState(null, '', window.location.href = animeUrl);
     } else {
         showNotification(errorMessage);
     }
 }
 
-function registerFuntion() {
+async function registerFuntion() {
     let userR = document.getElementById('usernameR').value;
     let passR = document.getElementById('passwordR').value;
     const email = document.getElementById('email').value;
     const confirmPass = document.getElementById('confirm-passwordR').value;
 
     // console.log('tempuser:',tempUser,'tempPass',tempPass);
-    if (passR == confirmPass && passR !== ' ' && email !== '' && userR !== '' && confirmPass !== ''){
-        // console.log('tempuser:',tempUser,'tempPass',tempPass);
-        sessionStorage.setItem('tempUser', userR);
-        sessionStorage.setItem('tempPass', passR);
-        window.location.href = loginurl;
-    }
-    else{
+    if (passR == confirmPass && passR !== ' ' && email !== '' && userR !== '' && confirmPass !== '') {
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: userR, password: passR, email: email })
+        });
+        if (response.ok) 
+            window.location.href = loginurl;
+        else
+            console.log("Something's wrong");
+    }else{
         showNotification(registerError);
-        userR = 'null';
-        passR = 'null';
-        sessionStorage.setItem('tempUser', userR);
-        sessionStorage.setItem('tempPass', passR);
     }
 }
 
