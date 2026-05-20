@@ -1,44 +1,49 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
     font-family: "Libre Baskerville", serif;
 }
-body{
-    background: radial-gradient(circle, rgb(249, 154, 154), #ff5560 25%, #ff4660 50%, #ff6630 75%, rgb(255, 136, 51));
-    height: 100vh; 
-    margin: 0; 
+
+body {
+    background: linear-gradient(to bottom, #56ccf2 0%, #1f7cf7 100%);
+    height: 100vh;
+    margin: 0;
     border: 5px solid black;
 }
-@keyframes float{
-    from{
+
+@keyframes float {
+    from {
         top: -20px;
     }
-    to{
+
+    to {
         top: 20px;
     }
 }
-.container{
+
+.container {
     width: 30%;
     margin: 0 auto;
     background-color: inherit;
-    margin-top: 80px;
+    margin-top: 150px;
     padding-bottom: 100px;
     border-radius: 10px;
     /* height: 60vh; */
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142), 
-  0 6px 20px rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.443);
-  position: relative;
-  animation-name: float;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-play-state: running;
-  
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142),
+        0 6px 20px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.443);
+    position: relative;
+    animation-name: float;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+
 }
-.container::after{
+
+.container::after {
     content: "";
     position: absolute;
     top: 0;
@@ -47,23 +52,24 @@ body{
     bottom: 0;
     background: inherit;
     z-index: -1;
-    box-shadow: inset 0 0 500px rgba(255, 255, 255, 0.078); 
+    box-shadow: inset 0 0 500px rgba(255, 255, 255, 0.078);
     filter: blur(20px);
 }
-.title{
+
+.title {
     width: 100%;
     text-align: center;
     color: rgb(255, 255, 255);
     font-size: 30px;
     font-weight: bold;
     text-shadow: 0 0 1px rgb(0, 0, 0),
-    0 0 1px rgba(251, 249, 248, 0.845),
-    0 0 1px rgba(255, 255, 255, 0.986);
+        0 0 1px rgba(251, 249, 248, 0.845),
+        0 0 1px rgba(255, 255, 255, 0.986);
     margin: 20px 0px 20px 0px;
     letter-spacing: 1.5px;
 }
-.inner-container{
-    /* background-color: red; */
+
+.inner-container {
     width: 80%;
     margin: 0 auto;
     display: flex;
@@ -72,44 +78,51 @@ body{
     font-size: 20px;
     color: white;
     text-shadow: 0 0 1px rgb(255, 255, 255),
-    0 0 1px rgba(251, 249, 248, 0.845),
-    0 0 2px rgba(255, 255, 255, 0.986);
+        0 0 1px rgba(251, 249, 248, 0.845),
+        0 0 2px rgba(255, 255, 255, 0.986);
     letter-spacing: 2px;
 }
-#totoro{
+
+#totoro {
     width: 100px;
     position: absolute;
     top: -45px;
     left: 10px;
 }
-#gin{
+
+#gin {
     width: 120px;
     position: absolute;
     top: -52px;
     right: 10px;
 }
-#jujutsu{
+
+#jujutsu {
     width: 150px;
     position: absolute;
     left: -320px;
     top: 150px;
     z-index: 1;
 }
-#goku{
+
+#goku {
     width: 200px;
     position: absolute;
     right: -350px;
     top: 130px;
     z-index: 1;
 }
-#diglett{
+
+#diglett {
     width: 50px;
     position: absolute;
     bottom: -20px;
     z-index: 1;
     left: 50px;
 }
-#username,#password{
+
+#username,
+#password {
     font-size: 20px;
     outline: none;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -118,20 +131,24 @@ body{
     padding: 5px;
     color: white;
     text-shadow: 0 0 1px rgb(243, 240, 237),
-    0 0 1px rgba(251, 249, 248, 0.845),
-    0 0 1px rgba(255, 255, 255, 0.986);
+        0 0 1px rgba(251, 249, 248, 0.845),
+        0 0 1px rgba(255, 255, 255, 0.986);
     letter-spacing: 2px;
 }
-#username:focus, #password:focus{
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142), 
-    0 6px 20px rgba(255, 255, 255, 0.15);
+
+#username:focus,
+#password:focus {
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142),
+        0 6px 20px rgba(255, 255, 255, 0.15);
     background-color: rgba(255, 255, 255, 0.205);
     border: 1px solid rgba(255, 255, 255, 0.418);
 }
-#pass{
+
+#pass {
     margin-top: 10px;
 }
-#login{
+
+#login {
     outline: none;
     font-size: 20px;
     padding: 5px;
@@ -145,12 +162,13 @@ body{
     position: relative;
 }
 
-#login:hover{
+#login:hover {
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142), 
-  0 6px 20px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.142),
+        0 6px 20px rgba(255, 255, 255, 0.15);
 }
-.sign-up{
+
+.sign-up {
     position: absolute;
     /* bottom: -15px; */
     top: 400px;
@@ -161,27 +179,18 @@ body{
     letter-spacing: 2px;
     text-decoration: none;
     color: white;
-  transition: .2s all;
-  background-color: rgba(254, 49, 97, 0.815);
-  border-radius: 50px;
-  padding: 2px 10px 2px 10px;
+    transition: .2s all;
+    background: linear-gradient(to bottom, #56ccf2 0%, #1f7cf7 100%);
+    border-radius: 50px;
+    padding: 2px 10px 2px 10px;
 }
-.sign-up::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: inherit;
-    z-index: -1;
-    box-shadow: inset 0 0 500px rgba(255, 255, 255, 0.078); 
-    filter: blur(20px);
-}
+
+
+
 /* .sign-up:hover{
     bottom: -12px;
 } */
-.forgot-pass{
+.forgot-pass {
     position: relative;
     text-decoration: none;
     font-size: 14px;
@@ -192,29 +201,36 @@ body{
     transition: .1s all;
     top: 1px;
 }
-.forgot-pass:hover{
+
+.forgot-pass:hover {
     top: 3px;
 }
-.cloud{
+
+.cloud {
     position: absolute;
     width: 320px;
     top: 310px;
 }
-.cloud.one{
+
+.cloud.one {
     left: -60px;
 }
-.cloud.two{
+
+.cloud.two {
     right: -60px;
 
 }
-.cloud.three{
+
+.cloud.three {
     left: -400px;
     top: 200px;
 }
-.cloud.four{
+
+.cloud.four {
     right: -400px;
     top: 200px;
 }
+
 .notification {
     position: fixed;
     font-size: 24px;
@@ -229,11 +245,12 @@ body{
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 9999;
-    background-color: #ff3333b4;
-    border: 2px solid rgba(255, 0, 0, 0.411);
- 
+    /* Changed notification to grayscale to match the theme */
+    background-color: rgba(40, 40, 40, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.4);
 }
-.notification::after{
+
+.notification::after {
     content: "";
     position: absolute;
     top: 0;
@@ -250,50 +267,63 @@ body{
 }
 
 @media screen and (max-width: 850px) {
-    .container{
+    .container {
         width: 50%;
     }
-    .cloud.cloud.four,.cloud.three,#jujutsu,#goku{
+
+    .cloud.cloud.four,
+    .cloud.three,
+    #jujutsu,
+    #goku {
         display: none;
     }
 }
+
 @media screen and (max-width: 600px) {
-    .container{
+    .container {
         width: 70%;
         animation: none;
     }
-    body{
+
+    body {
         border: none;
     }
-    
+
 }
+
 @media screen and (max-width: 420px) {
-    .container{
+    .container {
         width: 80%;
     }
-    .cloud{
+
+    .cloud {
         width: 250px;
     }
-    .sign-up{
+
+    .sign-up {
         font-size: 18px;
         top: 385px;
         right: 20px;
     }
-    #diglett{
+
+    #diglett {
         bottom: -5px;
     }
-    .notification{
+
+    .notification {
         font-size: 16px;
         width: 60%;
         bottom: 380px;
     }
 }
+
 @media screen and (max-width: 350px) {
 
-    .cloud{
+    .cloud {
         width: 220px;
     }
-    .sign-up{
-        top:370px
+
+    .sign-up {
+        top: 370px
     }
 }

@@ -62,3 +62,11 @@
 .logo-container {
     position: relative;
 }
+
+#logout-btn {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    background: rgb(34, 34, 34);
+    border-radius: 5px;
+    padding: 3px 8px 3px 8px;
+}

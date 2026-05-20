@@ -11,14 +11,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
  infoContainer = document.getElementById("info-container");
 
- function getNav(){
- 
-    fetch('../../pages/mangaNav.html')
+function getNav(){
+    fetch('../../pages/mangaNav.html') // Use mangaNav.html for the manga pages
     .then(response => response.text())
     .then(html => {
         document.getElementById('navbar').innerHTML = html;
+        
+        // Attach event listener after the HTML is injected
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                
+                // Remove the JWT token from storage
+                localStorage.removeItem('token'); 
+                
+                // Redirect to the default public login route
+                window.location.href = '/'; 
+            });
+        }
     });
- }
+}
 
  async function displayInfo(id, type) {
     //Using Kitsu Api to get the manga based ont he type and the id

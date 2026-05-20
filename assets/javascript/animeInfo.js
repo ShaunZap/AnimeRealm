@@ -11,12 +11,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const type = params.get('type');
     displayInfo(id, type);
  });
- function getNav(){
- 
-    fetch('../../pages/animeNav.html')
+function getNav(){
+    fetch('../../pages/animeNav.html') // Use mangaNav.html for the manga pages
     .then(response => response.text())
     .then(html => {
         document.getElementById('navbar').innerHTML = html;
+        
+        // Attach event listener after the HTML is injected
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                
+                // Remove the JWT token from storage
+                localStorage.removeItem('token'); 
+                
+                // Redirect to the default public login route
+                window.location.href = '/'; 
+            });
+        }
     });
 }
 async function displayInfo(id, type) {

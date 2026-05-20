@@ -51,7 +51,8 @@ body {
 
 #search {
   border: none;
-  radial-gradient(circle, #ffffff, #afa6aa) outline: none;
+  background: radial-gradient(circle, #ffffff, #afa6aa);
+  outline: none;
   width: 100%;
   border: 2px solid rgb(255, 255, 255);
   background-color: #1e1e1e;
