@@ -1,26 +1,32 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    font-family: "Libre Baskerville", serif;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Libre Baskerville", serif;
 }
-body{
-    background-color: black !important;
+
+body {
+  background-color: black !important;
 }
+
 ::-webkit-scrollbar {
-    width: 15px;
-  }
+  width: 15px;
+}
+
 ::-webkit-scrollbar-track {
-    background: #1e1e1e;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: radial-gradient(circle, orange, #ff660e);
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #ff954e;
-  }
-.search-container{
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff954e;
+}
+
+.search-container {
   width: 80%;
   margin: 0 auto;
   position: relative;
@@ -29,18 +35,21 @@ body{
   gap: 6px;
   justify-content: end;
 }
-.searchbar{
+
+.searchbar {
   width: 92%;
   display: flex;
   gap: 10px;
 }
-#gintoki-image{
+
+#gintoki-image {
   width: 52px;
   position: absolute;
   left: 0px;
   top: -60px;
 }
-#search{
+
+#search {
   border: none;
   outline: none;
   width: 100%;
@@ -51,22 +60,25 @@ body{
   color: #ffff;
   padding-left: 5px;
 }
-#search:focus{
+
+#search:focus {
   box-shadow: #fc7d33 0px 0px 10px 1px;
 }
-#submit{
+
+#submit {
   font-size: 20px;
   padding: 2px 10px 1px 10px;
   border: none;
   font-weight: bold;
-  background-color: #ff5900;
-  color: white;
+  background-color: #ff8b48;
+  color: rgb(0, 0, 0);
   box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 5px 1px inset;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 4px;
   position: relative;
 }
-#submit::after{
+
+#submit::after {
   content: "";
   position: absolute;
   top: 0;
@@ -77,7 +89,8 @@ body{
   background-color: transparent;
   transition: .3s all;
 }
-#submit:hover::after{
+
+#submit:hover::after {
   box-shadow: #fc7d33 0px 0px 10px 1px;
 }
 
@@ -89,14 +102,15 @@ body{
   width: 85%;
   margin: 0 auto;
   padding: 10px;
-  background: radial-gradient(circle, orange, #ff660e);
+  background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
   border-radius: 5px;
   top: 200px;
   margin-bottom: 100px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
-  0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.15);
 }
-#results-container::after{
+
+#results-container::after {
   content: " ";
   position: absolute;
   background: inherit;
@@ -104,11 +118,12 @@ body{
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: inset 0 0 500px rgba(255, 255, 255, .4); 
+  box-shadow: inset 0 0 500px rgba(255, 255, 255, .4);
   filter: blur(10px);
   z-index: -1;
 }
-.card{
+
+.card {
   min-width: 320px;
   max-width: 500px;
   overflow: hidden;
@@ -118,34 +133,40 @@ body{
   border: 2px solid black !important;
   transition: 0.3s all;
 }
-.card:hover{
+
+.card:hover {
   cursor: pointer;
-  transform:scale(1.03);
+  transform: scale(1.03);
   -ms-transform: scale(1.03);
   -webkit-transform: scale(1.03);
   border: 2px solid #ffffff !important;
   box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 3px 2px;
 }
-.card-image{
+
+.card-image {
   display: block;
 }
-.card-title{
+
+.card-title {
   width: 98%;
   margin: 0 auto;
   text-align: center;
   margin-top: 5px;
   font-size: 15px;
 }
-.card-content{
+
+.card-content {
   display: flex;
   justify-content: space-around;
   margin-bottom: 5px;
   margin-top: auto;
 }
-.rating{
+
+.rating {
   color: #ff660e;
 }
-#animeContainer{
+
+#animeContainer {
   position: relative;
   display: flex;
   gap: 10px;
@@ -153,123 +174,152 @@ body{
   top: 110px;
   padding-bottom: 20px;
 }
-#animeContainer2{
+
+#animeContainer2 {
   position: relative;
   display: flex;
   gap: 10px;
   justify-content: center;
   top: 190px;
 }
-.next{
+
+.next {
   padding: 0px 20px 0px 20px;
 }
-#count{
+
+#count {
   padding: 0px 5px 0px 5px;
   font-size: 16px;
-  color: rgb(40,40,40);
-  background: radial-gradient(circle, orange, #ff660e);
+  color: rgb(40, 40, 40);
+  background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
   border-radius: 5px;
   border: 1px solid rgb(100, 100, 100);
 }
-.previous{
+
+.previous {
   padding: 0px 5px 0px 5px;
 }
-.next, .previous{
+
+.next,
+.previous {
   font-size: 16px;
-  color: rgb(40,40,40);
-  background: radial-gradient(circle, orange, #ff660e);
+  color: rgb(40, 40, 40);
+  background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
   border: 1px solid rgb(100, 100, 100);
   border-radius: 5px;
   transition: .5s all;
 }
 
-.next:active, .previous:active{
+.next:active,
+.previous:active {
   box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
 }
-#genre{
+
+#genre {
   font-size: 20px;
-  color: white;
-  background-color: #ff5900;
+  color: rgb(0, 0, 0);
+  background-color: #ff8b48;
   box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 5px 1px inset;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 4px;
   text-align: center;
   font-weight: bold;
 }
-#genre > option{
+
+#genre>option {
   font-size: 20px;
-  background-color: #ff660e;
+  background-color: #ff8b48;
   font-weight: bold;
 }
+
 @media screen and (max-width: 900px) {
-  #gintoki-image{
+  #gintoki-image {
     width: 45px !important;
   }
-  .search-container{
+
+  .search-container {
     top: 130px;
     width: 85%;
   }
-  #results-container{
+
+  #results-container {
     top: 150px;
   }
-  #animeContainer2{
+
+  #animeContainer2 {
     top: 140px;
   }
-  #animeContainer{
+
+  #animeContainer {
     top: 65px;
   }
 }
+
 @media screen and (max-width: 650px) {
-#submit{
-  font-size: 10px;
-}
-  #genre{
+  #submit {
     font-size: 10px;
   }
-  #genre > option{
+
+  #genre {
     font-size: 10px;
   }
-  #gintoki-image{
+
+  #genre>option {
+    font-size: 10px;
+  }
+
+  #gintoki-image {
     width: 40px !important;
   }
-  .searchbar{
+
+  .searchbar {
     width: 90%;
     gap: 2px;
   }
 }
+
 @media screen and (max-width: 550px) {
 
-  #gintoki-image{
+  #gintoki-image {
     display: none;
   }
-  .search-container{
+
+  .search-container {
     top: 110px;
     width: 95%;
   }
-  #results-container{
+
+  #results-container {
     top: 130px;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  width: 95%;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    width: 95%;
   }
-  .card-title{
+
+  .card-title {
     font-size: 12px;
-}
-.card-content{
-  font-size: 10px;
-}
-  .searchbar{
+  }
+
+  .card-content {
+    font-size: 10px;
+  }
+
+  .searchbar {
     width: 100%;
   }
-  #animeContainer2{
+
+  #animeContainer2 {
     top: 120px;
     left: 7%;
     justify-content: space-between;
     width: 85%;
   }
-  #animeContainer{
+
+  #animeContainer {
     top: 40px;
   }
-  .next, .previous #count{
+
+  .next,
+  .previous #count {
     font-size: 14px;
   }
 }

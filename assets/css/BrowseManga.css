@@ -1,271 +1,323 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    font-family: "Libre Baskerville", serif;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Libre Baskerville", serif;
 }
-body{
-    background-color: black !important;
+
+body {
+  background-color: black !important;
 }
+
 ::-webkit-scrollbar {
-    width: 15px;
-  }
+  width: 15px;
+}
+
 ::-webkit-scrollbar-track {
-    background: #1e1e1e;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: radial-gradient(circle, #ff6eca, #ff0073);
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #ff4998;
-  }
-  .search-container{
-    width: 80%;
-    margin: 0 auto;
-    position: relative;
-    top: 180px;
-    display: flex;
-    gap: 6px;
-    justify-content: end;
-  }
-  .searchbar{
-    width: 92%;
-    display: flex;
-    gap: 10px;
-  }
-  #gintoki-image{
-    width: 52px;
-    position: absolute;
-    left: 0px;
-    top: -60px;
-  }
-  #search{
-    border: none;
-    outline: none;
-    width: 100%;
-    border: 2px solid rgb(255, 255, 255);
-    background-color: #1e1e1e;
-    border-radius: 5px;
-    transition: .3s all;
-    color: #ffff;
-    padding-left: 5px;
-  }
-  #search:focus{
-    box-shadow: #ff3590 0px 0px 10px 1px;
-  }
-  #submit{
-    font-size: 20px;
-    padding: 2px 10px 1px 10px;
-    border: none;
-    font-weight: bold;
-    background-color: #ff0073;
-    color: white;
-    box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 5px 1px inset;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 4px;
-    position: relative;
-  }
-  #submit::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background-color: transparent;
-    transition: .3s all;
-  }
-  #submit:hover::after{
-    box-shadow: #fc33af 0px 0px 10px 1px;
-  }
-  #results-container{
-    display: grid;
-    position: relative;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px;
-    width: 85%;
-    margin: 0 auto;
-    padding: 10px;
-    background: radial-gradient(circle, #ff6eca, #ff0073);
-    border-radius: 5px;
-    top: 200px;
-    margin-bottom: 100px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle, #ffffff, #afa6aa);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #afa6aa;
+}
+
+.search-container {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  top: 180px;
+  display: flex;
+  gap: 6px;
+  justify-content: end;
+}
+
+.searchbar {
+  width: 92%;
+  display: flex;
+  gap: 10px;
+}
+
+#gintoki-image {
+  width: 52px;
+  position: absolute;
+  left: 0px;
+  top: -60px;
+}
+
+#search {
+  border: none;
+  radial-gradient(circle, #ffffff, #afa6aa) outline: none;
+  width: 100%;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: #1e1e1e;
+  border-radius: 5px;
+  transition: .3s all;
+  color: #ffff;
+  padding-left: 5px;
+}
+
+#search:focus {
+  box-shadow: #afa6aa 0px 0px 10px 1px;
+}
+
+#submit {
+  font-size: 20px;
+  padding: 2px 10px 1px 10px;
+  border: none;
+  font-weight: bold;
+  background-color: #afa6aa;
+  color: white;
+  box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 5px 1px inset;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  position: relative;
+}
+
+#submit::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: transparent;
+  transition: .3s all;
+}
+
+#submit:hover::after {
+  box-shadow: #afa6aa 0px 0px 10px 1px;
+}
+
+#results-container {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+  width: 85%;
+  margin: 0 auto;
+  padding: 10px;
+  background: radial-gradient(circle, #ffffff, #afa6aa);
+  border-radius: 5px;
+  top: 200px;
+  margin-bottom: 100px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3),
     0 6px 20px rgba(0, 0, 0, 0.15);
-  }
-  #results-container::after{
-    content: " ";
-    position: absolute;
-    background: inherit;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 500px rgba(255, 255, 255, .4); 
-    filter: blur(10px);
-    z-index: -1;
-  }
-  .card{
-    min-width: 320px;
-    max-width: 500px;
-    overflow: hidden;
-    background-color: #000000 !important;
-    color: white !important;
-    box-shadow: rgba(237, 33, 162, 0.6) 0px 0px 3px 2px inset;
-    border: 2px solid black !important;
-    transition: 0.3s all;
-  }
-  .card:hover{
-    cursor: pointer;
-    transform:scale(1.03);
-    -ms-transform: scale(1.03);
-    -webkit-transform: scale(1.03);
-    border: 2px solid #ffffff !important;
-    box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 3px 2px;
-  }
-  .card-image{
-    display: block;
-  }
-  .card-title{
-    width: 98%;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 5px;
-    font-size: 15px;
-  }
-  .card-content{
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 5px;
-    margin-top: auto;
-  }
-  .rating{
-    color: #ff4998;
-  }
-  #animeContainer{
-    position: relative;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    top: 110px;
-    padding-bottom: 20px;
-  }
-  #animeContainer2{
-    position: relative;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    top: 190px;
-  }
-  .next{
-    padding: 0px 20px 0px 20px;
-  }
-  #count{
-    padding: 0px 5px 0px 5px;
-    font-size: 16px;
-    color: white;
-    background: radial-gradient(circle, #ff6eca, #ff0073);
-    border-radius: 5px;
-  }
-  .previous{
-    padding: 0px 5px 0px 5px;
-  }
-  .next, .previous{
-    font-size: 16px;
-    color: white;
-    background: radial-gradient(circle, #ff6eca, #ff0073);
-    border: 1px solid white;
-    border-radius: 5px;
-    transition: .5s all;
-  }
-  .next:active, .previous:active{
-    box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
-  }
-  #genre{
-    font-size: 20px;
-    color: white;
-    background-color: #ff0073;
-    box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 5px 1px inset;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 4px;
-    text-align: center;
-    font-weight: bold;
-  }
-  #genre > option{
-    font-size: 20px;
-    background-color: #fc33af;
-  }
+}
+
+#results-container::after {
+  content: " ";
+  position: absolute;
+  background: inherit;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 500px rgba(255, 255, 255, .4);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.card {
+  min-width: 320px;
+  max-width: 500px;
+  overflow: hidden;
+  background-color: #000000 !important;
+  color: white !important;
+  box-shadow: rgba(190, 190, 190, 0.6) 0px 0px 3px 2px inset;
+  border: 2px solid black !important;
+  transition: 0.3s all;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  border: 2px solid #ffffff !important;
+  box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 3px 2px;
+}
+
+.card-image {
+  display: block;
+}
+
+.card-title {
+  width: 98%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+  margin-top: auto;
+}
+
+.rating {
+  color: #cfcfcf;
+}
+
+#animeContainer {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  top: 110px;
+  padding-bottom: 20px;
+}
+
+#animeContainer2 {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  top: 190px;
+}
+
+.next {
+  padding: 0px 20px 0px 20px;
+}
+
+#count {
+  padding: 0px 5px 0px 5px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background: radial-gradient(circle, #ffffff, #afa6aa);
+  border-radius: 5px;
+}
+
+.previous {
+  padding: 0px 5px 0px 5px;
+}
+
+.next,
+.previous {
+  font-size: 16px;
+  color: rgb(12, 12, 12);
+  background: radial-gradient(circle, #ffffff, #afa6aa);
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: .5s all;
+}
+
+.next:active,
+.previous:active {
+  box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
+}
+
+#genre {
+  font-size: 20px;
+  color: white;
+  background-color: #afa6aa;
+  box-shadow: rgba(255, 255, 255, 0.607) 0px 0px 5px 1px inset;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#genre>option {
+  font-size: 20px;
+  background-color: #978e92;
+}
+
 @media screen and (max-width: 900px) {
-  #gintoki-image{
+  #gintoki-image {
     width: 45px !important;
   }
-  .search-container{
+
+  .search-container {
     top: 130px;
     width: 85%;
   }
-  #results-container{
+
+  #results-container {
     top: 150px;
   }
-  #animeContainer2{
+
+  #animeContainer2 {
     top: 140px;
   }
-  #animeContainer{
+
+  #animeContainer {
     top: 65px;
   }
 }
+
 @media screen and (max-width: 650px) {
-  #submit{
+  #submit {
     font-size: 10px;
   }
-  #genre{
+
+  #genre {
     font-size: 10px;
   }
-  #genre > option{
+
+  #genre>option {
     font-size: 10px;
   }
-  #gintoki-image{
+
+  #gintoki-image {
     width: 40px !important;
   }
-  .searchbar{
+
+  .searchbar {
     width: 90%;
     gap: 2px;
   }
 }
+
 @media screen and (max-width: 550px) {
 
-  #gintoki-image{
+  #gintoki-image {
     display: none;
   }
-  .search-container{
+
+  .search-container {
     top: 110px;
     width: 95%;
   }
-  #results-container{
+
+  #results-container {
     top: 130px;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     width: 95%;
   }
-  .card-title{
+
+  .card-title {
     font-size: 12px;
-}
-.card-content{
-  font-size: 10px;
-}
-  .searchbar{
+  }
+
+  .card-content {
+    font-size: 10px;
+  }
+
+  .searchbar {
     width: 100%;
   }
-  #animeContainer2{
+
+  #animeContainer2 {
     top: 120px;
     left: 7%;
     justify-content: space-between;
     width: 85%;
   }
-  #animeContainer{
+
+  #animeContainer {
     top: 40px;
   }
-  .next, .previous #count{
+
+  .next,
+  .previous #count {
     font-size: 14px;
   }
 }

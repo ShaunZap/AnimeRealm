@@ -1,25 +1,30 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     background-color: black !important;
     font-family: "Libre Baskerville", serif;
 }
+
 ::-webkit-scrollbar {
     width: 15px;
-  }
+}
+
 ::-webkit-scrollbar-track {
     background: #1e1e1e;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: radial-gradient(circle, orange, #ff660e);
+}
+
+::-webkit-scrollbar-thumb {
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+::-webkit-scrollbar-thumb:hover {
     background: #ff954e;
-  }
+}
 
 #splash-screen {
     position: fixed;
@@ -27,7 +32,7 @@ body{
     left: 0;
     width: 100%;
     height: 100vh;
-    background: radial-gradient(circle, orange, #ff660e);
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     color: #fff;
     display: flex;
     justify-content: center;
@@ -36,46 +41,62 @@ body{
     transition: opacity .5s ease;
     z-index: 9999;
 }
-#splash-screen > h1{
+
+#splash-screen>h1 {
     font-weight: bold;
     animation-name: splash-screen;
     animation-duration: 1s;
     font-size: 80px;
     -webkit-text-stroke: 1px #070707;
 }
+
 @keyframes splash-screen {
-    0%   {font-size: 300px; transform: rotate(360deg);}
-    50%  {font-size: 14px; }
-    100% {font-size: 150px;  transform: rotate(0deg);}
-  }
-  
-#splash-screen.fade{
+    0% {
+        font-size: 300px;
+        transform: rotate(360deg);
+    }
+
+    50% {
+        font-size: 14px;
+    }
+
+    100% {
+        font-size: 150px;
+        transform: rotate(0deg);
+    }
+}
+
+#splash-screen.fade {
     opacity: 0;
     z-index: -1;
     transition: 1s ease;
 }
-#info-container{
+
+#info-container {
     width: 90%;
     margin: 0 auto;
     margin-top: 100px;
     display: grid;
-    grid-template-columns: repeat(20,1fr);
-    grid-template-rows: repeat(7,80px);
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(7, 80px);
     gap: 15px;
-    margin-bottom:15px;
+    margin-bottom: 15px;
 }
-.info-image > img{
+
+.info-image>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.info-image{
+
+.info-image {
     grid-area: 1/1/8/11;
     border-radius: 5px;
     overflow: hidden;
 }
-.info-content{
-    grid-area: 1/11/8/21 ;
+
+.info-content {
+    grid-area: 1/11/8/21;
     background-color: rgb(40, 40, 40);
     color: white;
     border-radius: 5px;
@@ -83,14 +104,16 @@ body{
     border: 2px solid #232323;
     box-shadow: #000000 0px 0px 10px 1px inset;
 }
-.animan-content{
+
+.animan-content {
     width: 100%;
     padding: 10px;
     font-size: 20px;
     line-height: 1.8;
 }
-.animan-title{
-    background: radial-gradient(circle, orange, #ff660e);
+
+.animan-title {
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     width: 100%;
     text-align: center;
     color: rgb(40, 40, 40);
@@ -98,24 +121,27 @@ body{
     padding: 5px;
     font-weight: bold;
 }
-.animan-score{
+
+.animan-score {
     font-size: 24px;
     font-weight: bold;
     background: -webkit-linear-gradient(white, orange, white);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.animan-rank{
+
+.animan-rank {
     font-size: 24px;
     font-weight: bold;
     background: -webkit-linear-gradient(white, orange, white);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
 .animan-trailer {
     text-decoration: none;
     color: #000000;
-    background: radial-gradient(circle, orange, #ff660e);
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     padding: 3px 8px 3px 8px;
     border: 2px solid #ff660e;
     border-radius: 5px;
@@ -123,13 +149,15 @@ body{
     margin-top: 10px;
     transition: 0.3s all;
 }
+
 .animan-trailer:hover {
     text-decoration: none;
     cursor: pointer;
     border: 2px solid #ffffff;
     position: relative;
 }
-#synopsis-container{
+
+#synopsis-container {
     width: 90%;
     margin: 0 auto;
     color: white;
@@ -140,30 +168,34 @@ body{
     overflow: hidden;
     margin-bottom: 20px;
 }
-.synopsis-title{
+
+.synopsis-title {
     width: 100%;
     color: rgb(40, 40, 40);
     text-align: center;
     font-size: 30px;
-    background: radial-gradient(circle, orange, #ff660e);
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     font-weight: bold;
     padding: 5px;
 }
-.synopsis{
+
+.synopsis {
     padding: 20px;
     font-size: 20px;
     word-spacing: 5px;
 }
-#title{
+
+#title {
     width: 100%;
     color: rgb(40, 40, 40);
     text-align: center;
     font-size: 30px;
-    background: radial-gradient(circle, orange, #ff660e);
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     font-weight: bold;
     padding: 5px;
 }
-#episodeList-container{
+
+#episodeList-container {
     width: 90%;
     margin: 0 auto;
     border-radius: 5px;
@@ -171,101 +203,127 @@ body{
     box-shadow: #000000 0px 0px 10px 1px inset;
     overflow: hidden;
 }
-.accordion-button{
+
+.accordion-button {
     background-color: #1e1e1e !important;
     color: white !important;
     padding: 20px !important;
 }
-.accordion-item{
+
+.accordion-item {
     background-color: #171717 !important;
     color: rgb(176, 176, 176) !important;
     border-bottom: 1px solid grey !important;
 
 }
-.accordion-button.collapsed::after, .accordion-button::after{
-    background-color: #ff660e !important;
+
+.accordion-button.collapsed::after,
+.accordion-button::after {
+    background-color: #fc975d !important;
     border-radius: 2px !important;
 }
-.accordion-button:focus{
-    background: radial-gradient(circle, orange, #ff660e);
+
+.accordion-button:focus {
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     color: rgb(40, 40, 40) !important;
     box-shadow: orange 0px 0px 10px 1px inset !important;
     font-weight: bold;
 }
-.accordion-button:hover{
+
+.accordion-button:hover {
     background-color: #292929 !important;
 }
-#pagination-container{
+
+#pagination-container {
     display: flex;
     position: relative;
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 20px;
 }
-  #count{
-    padding: 0px 5px 0px 5px;
+
+#count {
+    padding: 0px 10px 0px 10px;
+    margin: 0px 10px 0px 10px;
     font-size: 18px;
-    color: rgb(40, 40, 40) ;
-    background: radial-gradient(circle, orange, #ff660e);
-    border-left: 1px solid rgb(40, 40, 40) ;
-    border-right: 1px solid rgb(40, 40, 40) ;
+    color: rgb(40, 40, 40);
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
+    border-left: 1px solid rgb(40, 40, 40);
+    border-right: 1px solid rgb(40, 40, 40);
     font-weight: bold;
-  }
-  #next, #previous{
+    border-radius: 10px;
+    align-self: center;
+}
+
+#next,
+#previous {
     font-size: 18px;
-    color: rgb(40, 40, 40) ;
-    background: radial-gradient(circle, orange, #ff660e);
+    color: rgb(40, 40, 40);
+    background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
     border: none;
-    padding: 0px 5px 0px 5px;
+    padding: 5px 12px 5px 12px;
     transition: .5s all;
+    border-radius: 50%;
     font-weight: bold;
-  }
-  #previous{
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-  #next{
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  #next:active, #previous:active{
+}
+
+
+
+#next:active,
+#previous:active {
     box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 6px 3px;
-  }
+}
+
 @media screen and (max-width: 850px) {
-    .info-image{
+    .info-image {
         position: relative;
         grid-area: 1/1/8/21;
         z-index: 1;
         opacity: 0.2;
     }
-    .info-content{
+
+    .info-content {
         position: relative;
         grid-area: 1/1/8/21;
     }
-    .animan-title, .animan-content{
+
+    .animan-title,
+    .animan-content {
         position: relative;
         z-index: 2;
     }
 }
+
 @media screen and (max-width: 600px) {
-    #splash-screen > h1{
+    #splash-screen>h1 {
         font-size: 50px;
     }
 }
+
 @media screen and (max-width: 500px) {
-    .animan-title, .synopsis-title, #title{
+
+    .animan-title,
+    .synopsis-title,
+    #title {
         font-size: 24px;
     }
-    .animan-score, .animan-rank{
+
+    .animan-score,
+    .animan-rank {
         font-size: 20px;
     }
-    .animan-content{
+
+    .animan-content {
         font-size: 18px;
     }
-    .synopsis{
+
+    .synopsis {
         font-size: 14px;
     }
-    #info-container, #synopsis-container, #episodeList-container{
+
+    #info-container,
+    #synopsis-container,
+    #episodeList-container {
         width: 95%;
     }
 }

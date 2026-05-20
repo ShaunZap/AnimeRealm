@@ -1,80 +1,93 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    font-family: "Libre Baskerville", serif;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Libre Baskerville", serif;
 }
-body{
-    background-color: black !important;
+
+body {
+  background-color: black !important;
 }
 
 /*===========Scrollbar=============*/
 
 ::-webkit-scrollbar {
-    width: 15px;
-  }
+  width: 15px;
+}
+
 ::-webkit-scrollbar-track {
-    background: #1e1e1e;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: radial-gradient(circle, orange, #ff660e);
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #ff954e;
-  }
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff954e;
+}
+
 /*===========Carousel=============*/
 
-#anime-carousel{
+#anime-carousel {
   margin-top: 55px;
 }
-.carousel-button{
-    border: none;
-    font-size: 20px;
-    font-weight: 400;
-    padding: 2px 20px 0px 20px;
-    background: radial-gradient(circle, orange, #ff660e);
-    color: white;
-    box-shadow: rgba(17, 17, 17, 0.607) 0px 0px 3px 2px inset;
-    border: 3px solid black;
-    border-radius: 4px;
-    transition: 0.3s all;
+
+.carousel-button {
+  border: none;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 2px 20px 0px 20px;
+  background: radial-gradient(circle, rgb(255, 201, 99), #ff8b48);
+  color: rgb(0, 0, 0);
+  box-shadow: rgba(17, 17, 17, 0.607) 0px 0px 3px 2px inset;
+  border: 3px solid black;
+  border-radius: 4px;
+  transition: 0.3s all;
 }
-.carousel-button:hover{
+
+.carousel-button:hover {
   transform: translateY(-2px);
 }
-.indicator-button{
-    border: 1px solid white !important;
+
+.indicator-button {
+  border: 1px solid white !important;
 }
-.carousel-indicators .active{
-    background-color: #ff5900 !important;
+
+.carousel-indicators .active {
+  background-color: #ff5900 !important;
 }
-.carousel-control-next-icon{
-    background-color: #000000 !important;
-    border-radius: 5px;
+
+.carousel-control-next-icon {
+  background-color: #000000 !important;
+  border-radius: 5px;
 }
-.carousel-control-prev-icon{
-    background-color: #000000 !important;  
-    border-radius: 5px;
+
+.carousel-control-prev-icon {
+  background-color: #000000 !important;
+  border-radius: 5px;
 }
 
 /*=========== Top 10 =============*/
 
-.top-10-container{
+.top-10-container {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
 }
-.upcoming-container{
+
+.upcoming-container {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
 }
-.anime-title{
+
+.anime-title {
   font-family: "Rubik 80s Fade", system-ui;
   font-weight: 400;
   font-size: 40px;
@@ -83,7 +96,8 @@ body{
   position: relative;
   top: 3px;
 }
-.sword{
+
+.sword {
   width: 60px;
 }
 
@@ -96,12 +110,12 @@ body{
   padding: 10px;
   border-radius: 5px;
   margin-top: 20px;
-  background: radial-gradient(circle, orange, #ff660e);
+  background: transparent;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
-  0 6px 20px rgba(0, 0, 0, 0.15);
+
 }
-#top-anime-card-container::after{
+
+#top-anime-card-container::after {
   content: " ";
   position: absolute;
   background: inherit;
@@ -109,10 +123,9 @@ body{
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: inset 0 0 500px rgba(255, 255, 255, .4); 
-  filter: blur(10px);
   z-index: -1;
 }
+
 #upcoming-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -123,12 +136,12 @@ body{
   border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 50px;
-  background: radial-gradient(circle, orange, #ff660e);
+  background: transparent;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 
-  0 6px 20px rgba(0, 0, 0, 0.15);
+
 }
-#upcoming-card-container::after{
+
+#upcoming-card-container::after {
   content: " ";
   position: absolute;
   background: inherit;
@@ -136,88 +149,103 @@ body{
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: inset 0 0 500px rgba(255, 255, 255, .4); 
-  filter: blur(10px);
   z-index: -1;
 }
-.card{
+
+.card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background-color: #000000 !important;
   color: white !important;
-  box-shadow: rgba(237, 111, 33, 0.6) 0px 0px 3px 2px inset;
+  box-shadow: rgba(255, 173, 122, 0.6) 0px 0px 3px 2px inset;
   border: 2px solid black !important;
   transition: 0.3s all;
 }
-.card:hover{
+
+.card:hover {
   cursor: pointer;
-  transform:scale(1.03);
+  transform: scale(1.03);
   -ms-transform: scale(1.03);
   -webkit-transform: scale(1.03);
   border: 2px solid #ffffff !important;
   box-shadow: rgba(255, 255, 255, 0.774) 0px 0px 3px 2px;
 }
-.card-image{
+
+.card-image {
   display: block;
 }
-.card-title{
+
+.card-title {
   width: 98%;
   margin: 0 auto;
   text-align: center;
   font-size: 15px;
   margin-top: 5px;
 }
-.card-content{
+
+.card-content {
   display: flex;
   justify-content: space-around;
   margin-bottom: 5px;
   margin-top: auto;
 }
-.rating{
-  color:#ff660e;
+
+.rating {
+  color: #ff8843;
 }
 
 @media screen and (max-width: 800px) {
-  .carousel-button{
+  .carousel-button {
     font-size: 16px;
   }
 }
+
 @media screen and (max-width: 600px) {
- .carousel-indicators{
-  bottom: -30px !important;
- }
- .carousel-caption{
-  bottom: -0.75rem !important;
- }
+  .carousel-indicators {
+    bottom: -30px !important;
+  }
+
+  .carousel-caption {
+    bottom: -0.75rem !important;
+  }
 }
+
 @media screen and (max-width: 500px) {
-  .carousel-button{
+  .carousel-button {
     font-size: 12px;
     padding: 2px 10px 0px 10px;
   }
-  .anime-title{
+
+  .anime-title {
     font-size: 30px;
   }
-  .sword{
+
+  .sword {
     width: 45px;
   }
-  #top-anime-card-container, #upcoming-card-container{
+
+  #top-anime-card-container,
+  #upcoming-card-container {
     width: 95%;
-   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-  .card-title{
+
+  .card-title {
     font-size: 12px;
+  }
+
+  .card-content {
+    font-size: 10px;
+  }
 }
-.card-content{
-  font-size: 10px;
-}
-}
+
 @media screen and (max-width: 350px) {
-  .anime-title{
+  .anime-title {
     font-size: 22px;
   }
-  .sword{
+
+  .sword {
     width: 36px;
   }
 }

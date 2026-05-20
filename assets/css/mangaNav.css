@@ -1,33 +1,36 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
     font-family: "Libre Baskerville", serif;
 }
-.nav-back{
-    background: radial-gradient(circle, #ff6eca, #ff0073);
+
+.nav-back {
+    background: radial-gradient(circle, #ffffff, #afa6aa);
     padding: 10px 0px 0px 0px !important;
     box-shadow: rgba(0, 0, 0, 0.635) 0px -50px 36px -28px inset;
-    border-bottom: 1px solid white;
-    box-shadow: #ff6eca 0px 0px 10px 1px;
 }
-#logo-title{
+
+#logo-title {
     font-style: normal;
     font-weight: 700;
-    font-size:25px;
+    font-size: 25px;
     color: white;
     -webkit-text-stroke: 1px #070707b1;
 }
-.link-text{
+
+.link-text {
     font-weight: 400;
     font-size: 18px;
+    color: black !important;
+}
+
+.link-text:hover {
+    cursor: pointer;
     color: white !important;
 }
-.link-text:hover{
-    cursor: pointer;
-    color: black!important;
-}
-.logo-image{
+
+.logo-image {
     width: 35px;
     position: absolute;
     animation-name: floating;
@@ -37,20 +40,25 @@
     animation-iteration-count: infinite;
     animation-play-state: running;
 }
+
 @keyframes floating {
-    from{
+    from {
         top: -10px;
     }
-    to{
+
+    to {
         top: -4px;
     }
 }
-.logo-image.one{
-    left:5px;
+
+.logo-image.one {
+    left: 5px;
 }
-.logo-image.two{
+
+.logo-image.two {
     left: 92px;
 }
-.logo-container{
+
+.logo-container {
     position: relative;
 }
