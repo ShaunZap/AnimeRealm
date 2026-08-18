@@ -26,12 +26,17 @@
             <div class="auth-form">
                 <label for="usernameR">Username</label>
                 <input type="text" id="usernameR" required autocomplete="username">
+                <div class="field-error" id="usernameR-error"></div>
                 <label for="email">Email</label>
                 <input type="email" id="email" required autocomplete="email">
+                <div class="field-error" id="email-error"></div>
                 <label for="passwordR">Password</label>
-                <input type="password" id="passwordR" required autocomplete="new-password">
+                <input type="password" id="passwordR" required autocomplete="new-password" minlength="6">
+                <div class="field-error" id="passwordR-error"></div>
+                <div class="field-hint" id="passwordR-hint">Use at least 6 characters</div>
                 <label for="confirm-passwordR">Confirm Password</label>
                 <input type="password" id="confirm-passwordR" required autocomplete="new-password">
+                <div class="field-error" id="confirm-passwordR-error"></div>
                 <button id="register" class="btn btn-primary btn-lg auth-submit">Register</button>
             </div>
             <p class="auth-switch">Already have an account? <a href="/">Log in</a></p>

@@ -26,15 +26,25 @@ function apiFetch(url, options = {}) {
     return fetch(url, { ...options, headers });
 }
 
+const TOAST_ICONS = {
+    info: 'bi-info-circle',
+    success: 'bi-check-circle',
+    warn: 'bi-exclamation-triangle',
+    error: 'bi-x-circle'
+};
+
 function showToast(message, type = 'info') {
     let toast = document.getElementById('notification');
     if (!toast) {
         toast = document.createElement('div');
         toast.id = 'notification';
         toast.className = 'notification';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
         document.body.appendChild(toast);
     }
-    toast.textContent = message;
+    const icon = TOAST_ICONS[type] || TOAST_ICONS.info;
+    toast.innerHTML = `<i class="bi ${icon}" aria-hidden="true"></i><span>${message}</span>`;
     toast.className = `notification ${type} show`;
     clearTimeout(showToast._timer);
     showToast._timer = setTimeout(() => {

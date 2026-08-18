@@ -11,10 +11,7 @@ const mongooseUsername = process.env.MONGOOSE_USER;
 const mongoosePassword = process.env.MONGOOSE_PASSWORD;
 const key = process.env.SECRET_KEY;
 
-mongoose.connect(`mongodb+srv://${mongooseUsername}:${mongoosePassword}@cluster0.osi99c1.mongodb.net/?appName=Cluster0`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(`mongodb+srv://${mongooseUsername}:${mongoosePassword}@cluster0.osi99c1.mongodb.net/?appName=Cluster0`);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -136,16 +133,19 @@ app.post('/register', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Email and password are required.' });
+    }
     try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email: email.trim().toLowerCase() });
         if (!user) {
             return res.sendStatus(401);
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (isPasswordValid) {
-            const token = jwt.sign({ username: username }, key, { expiresIn: '1h' });
+            const token = jwt.sign({ username: user.username }, key, { expiresIn: '1h' });
             res.cookie('token', token, { httpOnly: true, sameSite: 'lax', maxAge: 3600000 });
             res.status(200).json(token);
         } else {

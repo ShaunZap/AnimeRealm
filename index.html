@@ -24,10 +24,12 @@
             <h1 class="auth-title">Welcome Back</h1>
             <p class="auth-sub">Sign in to continue your journey</p>
             <div class="auth-form">
-                <label for="username">Username</label>
-                <input type="text" id="username" required autocomplete="username">
+                <label for="email">Email</label>
+                <input type="email" id="email" required autocomplete="email">
+                <div class="field-error" id="login-email-error"></div>
                 <label for="password">Password</label>
                 <input type="password" id="password" required autocomplete="current-password">
+                <div class="field-error" id="login-password-error"></div>
                 <button id="login" class="btn btn-primary btn-lg auth-submit">Login</button>
             </div>
             <p class="auth-switch">New to AnimeRealm? <a href="pages/registration.html">Create an account</a></p>

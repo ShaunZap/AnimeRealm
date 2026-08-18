@@ -993,42 +993,105 @@ textarea {
     position: fixed;
     bottom: 28px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(16px);
     z-index: 9999;
-    max-width: min(92vw, 460px);
-    padding: 12px 22px;
+    max-width: min(92vw, 480px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px 14px 16px;
     border-radius: var(--radius-md);
-    color: #ffffff;
     font-weight: 600;
     font-size: 15px;
-    text-align: center;
+    text-align: left;
     box-shadow: var(--shadow-lg);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    overflow: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.notification::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--toast-color, var(--accent));
+}
+
+.notification::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: var(--toast-color, var(--accent));
+    transform-origin: left;
+    transform: scaleX(1);
+    animation: ar-toast-progress 2.5s linear forwards;
 }
 
 .notification.show {
     opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.notification i {
+    font-size: 20px;
+    color: var(--toast-color, var(--accent));
+    flex-shrink: 0;
+}
+
+.notification span {
+    flex: 1;
+    min-width: 0;
+}
+
+@keyframes ar-toast-progress {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
 }
 
 .notification.info {
     background: var(--bg-elevated);
     border: 1px solid var(--border-strong);
     color: var(--text);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
 }
 
 .notification.success {
-    background: var(--success);
+    --toast-color: var(--success);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
 }
 
 .notification.warn {
-    background: var(--warning);
-    color: #241503;
+    --toast-color: var(--warning);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
 }
 
 .notification.error {
-    background: var(--danger);
+    --toast-color: var(--danger);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
 }
 
 /* ============================================================
