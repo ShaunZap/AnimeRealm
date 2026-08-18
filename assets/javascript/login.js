@@ -1,10 +1,8 @@
 
 const animeUrl = `../../pages/anime.html`;
 const loginurl = `/`;
-const notification = document.getElementById("notification");
 const errorMessage = 'Incorrect username or password. Please try again.';
 const registerError = 'Passwords don\'t match or fields are empty. Fill all fields.';
-// const User = require('User');
 
 function addKeyPressListener() {
     document.addEventListener('keypress', function (event) {
@@ -16,6 +14,14 @@ function addKeyPressListener() {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+        updateThemeIcon();
+    }
+});
 
 if (document.getElementById('login')) {
     const login = document.getElementById("login");
@@ -50,7 +56,7 @@ async function loginFunction() {
         // console.log(token);
         history.replaceState(null, '', window.location.href = animeUrl);
     } else {
-        showNotification(errorMessage);
+        showToast(errorMessage, 'error');
     }
 }
 
@@ -74,14 +80,6 @@ async function registerFuntion() {
         else
             console.log("Something's wrong");
     }else{
-        showNotification(registerError);
+        showToast(registerError, 'warn');
     }
-}
-
-function showNotification(message) {
-    notification.textContent = message;
-    notification.classList.add("show");
-    setTimeout(() => {
-        notification.classList.remove("show");
-    }, 2500);
 }

@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnimeRealm</title>
-    <link rel="stylesheet" href="../assets/css/anime.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/javascript/anime.js" defer></script>
+    <script src="../assets/javascript/common.js" defer></script>
     <script src="../assets/javascript/cards.js"></script>
-    <script src="../assets/javascript/animeInfo.js"></script>
+    <script src="../assets/javascript/anime.js" defer></script>
 </head>
 <body>
     <div id="navbar"></div>
@@ -20,9 +22,9 @@
 
         <!-- Indicators/dots -->
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active indicator-button"></button>
-          <button type="button" data-bs-target="#demo" data-bs-slide-to="1" class="indicator-button"></button>
-          <button type="button" data-bs-target="#demo" data-bs-slide-to="2" class="indicator-button"></button>
+          <button type="button" data-bs-target="#anime-carousel" data-bs-slide-to="0" class="active indicator-button"></button>
+          <button type="button" data-bs-target="#anime-carousel" data-bs-slide-to="1" class="indicator-button"></button>
+          <button type="button" data-bs-target="#anime-carousel" data-bs-slide-to="2" class="indicator-button"></button>
         </div>
         
         <!-- The slideshow/carousel -->
@@ -61,9 +63,21 @@
       <div id="top-anime-card-container"></div>
       <div class="upcoming-container">
         <img src="../assets/images/sword.png" alt="swords" class="sword">
+        <div class="anime-title">Trending</div>
+        <img src="../assets/images/sword.png" alt="swords" class="sword">
+      </div>
+      <div id="trending-card-container"></div>
+      <div class="upcoming-container">
+        <img src="../assets/images/sword.png" alt="swords" class="sword">
         <div class="anime-title">Current Anime</div>
         <img src="../assets/images/sword.png" alt="swords" class="sword">
       </div>
       <div id="upcoming-card-container"></div>
+      <div class="upcoming-container" id="continue-watching-heading">
+        <img src="../assets/images/sword.png" alt="swords" class="sword">
+        <div class="anime-title">Continue Watching</div>
+        <img src="../assets/images/sword.png" alt="swords" class="sword">
+      </div>
+      <div id="continue-watching-container"></div>
 </body>
 </html>

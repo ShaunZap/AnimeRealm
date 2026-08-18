@@ -1,0 +1,111 @@
+/* ============================================================
+   Home pages (anime.html / manga.html) — carousel + sections
+   ============================================================ */
+
+/* ---------- Carousel ---------- */
+#anime-carousel,
+#manga-carousel {
+    margin-top: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: min(68vh, 540px);
+    object-fit: cover;
+}
+
+.carousel-caption {
+    left: 0;
+    right: 0;
+    bottom: 14%;
+    padding-bottom: 20px;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55));
+    border-radius: var(--radius-md);
+}
+
+.carousel-button {
+    height: 44px;
+    padding: 0 26px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--accent-contrast);
+    border: none;
+    transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.carousel-button:hover {
+    background: var(--accent-strong);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+    opacity: 1;
+}
+
+.carousel-indicators .active {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
+    background-size: 55%;
+}
+
+/* ---------- Section headings ---------- */
+.manga-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.4px;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+/* ---------- Card sections ---------- */
+#top-anime-card-container,
+#top-manga-card-container,
+#trending-card-container,
+#upcoming-card-container,
+#continue-watching-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 16px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8px 20px 12px;
+}
+
+.card .watchlist-add-btn {
+    width: calc(100% - 24px);
+    height: 34px;
+    margin: 4px 12px 12px;
+    padding: 0 12px;
+    font-size: 13px;
+    border-radius: var(--radius-sm);
+}
+
+@media screen and (max-width: 600px) {
+    .manga-title {
+        font-size: 24px;
+    }
+
+    .carousel-item img {
+        height: 46vh;
+    }
+
+    .carousel-caption {
+        bottom: 10%;
+    }
+}

@@ -1,76 +1,110 @@
 document.addEventListener('DOMContentLoaded', function () {
-    getNav();
+    if (!requireAuth()) return;
+    loadNav('nav.html', 'anime.html');
     getTopAnime();
+    getTrendingAnime();
     getUpcomingAnime();
+    loadContinueWatching();
+});
 
- });
-function getNav(){
-    fetch('../../pages/animeNav.html') // Use mangaNav.html for the manga pages
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById('navbar').innerHTML = html;
-        
-        // Attach event listener after the HTML is injected
-        const logoutBtn = document.getElementById('logout-btn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                
-                // Remove the JWT token from storage
-                localStorage.removeItem('token'); 
-                
-                // Redirect to the default public login route
-                window.location.href = '/'; 
-            });
+document.querySelectorAll('.carousel-button').forEach(button => {
+    button.addEventListener('click', function () {
+        openInfo(this.getAttribute('animanid'), this.getAttribute('animantype'));
+    });
+});
+
+async function getTopAnime() {
+    const container = document.getElementById("top-anime-card-container");
+    renderCards(container, 'anime?sort=popularityRank&page[limit]=8', getTopAnime);
+}
+
+async function getUpcomingAnime() {
+    const container = document.getElementById("upcoming-card-container");
+    renderCards(container, 'anime?filter[status]=current&page[limit]=8', getUpcomingAnime);
+}
+
+async function getTrendingAnime() {
+    const container = document.getElementById("trending-card-container");
+    renderCards(container, 'anime?sort=-userCount&page[limit]=8', getTrendingAnime);
+}
+
+async function loadContinueWatching() {
+    const container = document.getElementById("continue-watching-container");
+    const heading = document.getElementById("continue-watching-heading");
+    const hideSection = () => {
+        if (heading) heading.style.display = 'none';
+        if (container) container.style.display = 'none';
+    };
+    if (!container) return;
+    try {
+        const response = await apiFetch('/api/progress');
+        if (response.status === 401) {
+            logout();
+            return;
         }
+        if (!response.ok) {
+            hideSection();
+            return;
+        }
+        const progress = await response.json();
+        if (!progress.length) {
+            hideSection();
+            return;
+        }
+        const cards = progress.map(item => {
+            const pct = item.total > 0 ? Math.round((item.current / item.total) * 100) : 0;
+            return `
+            <div class="card watch-card" data-id="${item.kitsuId}" data-type="${item.type}">
+                <img src="${item.thumbnail || ''}" alt="${item.title}" class="card-image" loading="lazy"/>
+                <div class="card-title">${item.title}</div>
+                <div class="progress-track">
+                    <div class="progress-fill" style="width:${pct}%"></div>
+                </div>
+                <div class="card-content"><span>${item.current}/${item.total}</span><span>${pct}%</span></div>
+            </div>`;
+        });
+        container.innerHTML = cards.join('');
+        container.querySelectorAll('.watch-card').forEach(card => {
+            card.addEventListener('click', () => openInfo(card.dataset.id, card.dataset.type));
+        });
+    } catch (err) {
+        hideSection();
+    }
+}
+
+async function renderCards(container, query, retryFn) {
+    container.innerHTML = '';
+    for (let i = 0; i < 8; i++) {
+        container.appendChild(createSkeleton());
+    }
+    let data;
+    try {
+        data = await kitsu(query);
+    } catch (err) {
+        container.innerHTML = '';
+        showErrorState(container, retryFn);
+        return;
+    }
+    container.innerHTML = '';
+    generateCards(data).forEach(card => {
+        container.appendChild(card);
+        card.addEventListener('click', () => {
+            openQuickView(card.getAttribute('animanid'), card.getAttribute('animantype'));
+        });
     });
 }
- const carouselButtons = document.querySelectorAll('.carousel-button');
- carouselButtons.forEach(button => {
-     button.addEventListener('click', function(){
-         const aniManId = this.getAttribute('animanid');
-         const aniManType = this.getAttribute('animantype');
-         const url = `../../pages/animeInfo.html?id=${aniManId}&type=${aniManType}`;
-         console.log('Opening URL:', url);
-         window.open(url, '_blank');
-     });
- });
- 
- async function getTopAnime(){
-    const topResponse = await fetch(`https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=8`);
-    const topData = await topResponse.json();
-    console.log(topData);
-    let cards = generateCards(topData);
-    let cardContainer = document.getElementById("top-anime-card-container");
-    cards.forEach(card => {
-        cardContainer.appendChild(card);
 
-        card.addEventListener('click', () => {
-            const aniManId = card.getAttribute('animanid');
-            const aniManType = card.getAttribute('animantype');
-            console.log('Clicked card with animanid:', aniManId, aniManType);
-            const url = `../../pages/animeInfo.html?id=${aniManId}&type=${aniManType}`;
-            console.log('Opening URL:', url);
-            window.open(url, '_blank');
-        });
-    });
- }
- async function getUpcomingAnime(){
-    const topResponse = await fetch(`https://kitsu.io/api/edge/anime?filter[status]=current&page[limit]=8`);
-    const topData = await topResponse.json();
-    console.log(topData);
-    let cards = generateCards(topData);
-    let cardContainer = document.getElementById("upcoming-card-container");
-    cards.forEach(card => {
-        cardContainer.appendChild(card);
+function createSkeleton() {
+    const div = document.createElement('div');
+    div.className = 'card skeleton-card';
+    div.innerHTML = '<div class="skeleton-image"></div><div class="skeleton-line"></div>';
+    return div;
+}
 
-        card.addEventListener('click', () => {
-            const aniManId = card.getAttribute('animanid');
-            const aniManType = card.getAttribute('animantype');
-            console.log('Clicked card with animanid:', aniManId, aniManType);
-            const url = `../../pages/animeInfo.html?id=${aniManId}&type=${aniManType}`;
-            console.log('Opening URL:', url);
-            window.open(url, '_blank');
-        });
-    });
- }
+function showErrorState(container, retryFn) {
+    const div = document.createElement('div');
+    div.className = 'error-state';
+    div.innerHTML = `<p>Could not load content.</p><button class="retry-btn">Retry</button>`;
+    div.querySelector('.retry-btn').addEventListener('click', retryFn);
+    container.appendChild(div);
+}

@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="assets/css/login.css">
+    <title>Login - AnimeRealm</title>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="assets/javascript/common.js" defer></script>
     <script src="assets/javascript/login.js" defer></script>
 </head>
-<body>
-    <div class="container">
-        <img src="assets/images/totoro.png" alt="totoro" id="totoro">
-        <img src="assets/images/gin.png" alt="gintoki" id="gin">
-        <img src="assets/images/jujutsu.gif" alt="jujutsu" id="jujutsu">
-        <img src="assets/images/goku.gif" alt="Goku" id="goku">
-        <img src="assets/images/diglett-pokemon.gif" alt="diglett" id="diglett">
-        <img src="assets/images/clouds.png" alt="clouds" class="cloud one">
-        <img src="assets/images/clouds.png" alt="clouds" class="cloud two">
-        <img src="assets/images/clouds.png" alt="clouds" class="cloud three">
-        <img src="assets/images/clouds.png" alt="clouds" class="cloud four">
-        <div class="title">AnimeRealm</div>
-        <div class="inner-container">
-                <label for="username" id="user">Username</label>
-                <input type="text" id="username" required>
-                <label for="password" id="pass">Password</label>
-                <input type="password" id="password" required>
-                <button id="login">Login</button>
-                <a class="forgot-pass" href="#">Forgot Password?</a>
+<body class="auth-body auth-login">
+    <button id="theme-toggle" class="btn-icon theme-float" aria-label="Toggle light/dark theme"></button>
+    <div class="auth-wrap">
+        <div class="auth-card">
+            <div class="auth-brand">
+                <img src="assets/images/hat.png" alt="AnimeRealm">
+                <span>AnimeRealm</span>
+            </div>
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-sub">Sign in to continue your journey</p>
+            <div class="auth-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" required autocomplete="username">
+                <label for="password">Password</label>
+                <input type="password" id="password" required autocomplete="current-password">
+                <button id="login" class="btn btn-primary btn-lg auth-submit">Login</button>
+            </div>
+            <p class="auth-switch">New to AnimeRealm? <a href="pages/registration.html">Create an account</a></p>
         </div>
-        <a class="sign-up" href="pages/registration.html">Sign Up</a>
     </div>
     <div id="notification" class="notification"></div>
 </body>

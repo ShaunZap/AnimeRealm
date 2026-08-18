@@ -1,0 +1,40 @@
+/* ============================================================
+   My List page — sits on top of global.css design system
+   ============================================================ */
+
+#watchlist-container {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 8px 20px 12px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 17px;
+    padding: 60px 20px;
+}
+
+.empty-state p {
+    margin-bottom: 22px;
+}
+
+.empty-state .empty-link {
+    margin: 0 10px;
+}
+
+.card.list-card .card-image {
+    height: 240px;
+}
+
+.card.list-card .remove-btn {
+    margin: 4px 12px 12px;
+    width: calc(100% - 24px);
+}
+
+@media screen and (max-width: 500px) {
+    .card.list-card .card-image {
+        height: 200px;
+    }
+}

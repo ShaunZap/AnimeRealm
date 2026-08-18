@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../assets/css/register.css">
+    <title>Sign Up - AnimeRealm</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="../assets/javascript/common.js" defer></script>
     <script src="../assets/javascript/login.js" defer></script>
 </head>
-<body>
-    <div class="container">
-        <div class="title">Sign Up</div>
-        <img src="../assets/images/kagerou.png" alt="kagerou" id="kagerou">
-        <img src="../assets/images/anya.png" alt="anya" id="anya">
-        <img src="../assets/images/diglett-pokemon.gif" alt="diglett" class="diglett one">
-        <img src="../assets/images/diglett-pokemon.gif" alt="diglett" class="diglett two">
-        <div class="inner-container">
-                <label for="username" id="user">Username</label>
-                <input type="text" id="usernameR" required>
-                <label for="email" id="emails">Email</label>
-                <input type="text" id="email" required>
-                <label for="password" id="pass">Password</label>
-                <input type="password" id="passwordR" required>
-                <label for="password" id="pass">Confirm Password</label>
-                <input type="password" id="confirm-passwordR" required>
-                <button id="register">Register</button>
+<body class="auth-body auth-register">
+    <button id="theme-toggle" class="btn-icon theme-float" aria-label="Toggle light/dark theme"></button>
+    <div class="auth-wrap">
+        <div class="auth-card">
+            <div class="auth-brand">
+                <img src="../assets/images/hat.png" alt="AnimeRealm">
+                <span>AnimeRealm</span>
+            </div>
+            <h1 class="auth-title">Create Account</h1>
+            <p class="auth-sub">Join AnimeRealm and start tracking</p>
+            <div class="auth-form">
+                <label for="usernameR">Username</label>
+                <input type="text" id="usernameR" required autocomplete="username">
+                <label for="email">Email</label>
+                <input type="email" id="email" required autocomplete="email">
+                <label for="passwordR">Password</label>
+                <input type="password" id="passwordR" required autocomplete="new-password">
+                <label for="confirm-passwordR">Confirm Password</label>
+                <input type="password" id="confirm-passwordR" required autocomplete="new-password">
+                <button id="register" class="btn btn-primary btn-lg auth-submit">Register</button>
+            </div>
+            <p class="auth-switch">Already have an account? <a href="/">Log in</a></p>
         </div>
     </div>
     <div id="notification" class="notification"></div>

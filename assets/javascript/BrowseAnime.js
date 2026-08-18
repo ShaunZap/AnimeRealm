@@ -1,152 +1,216 @@
+const cardContainer = document.getElementById("results-container");
+const filterBar = document.getElementById("filter-bar");
+const PAGE_LIMIT = 12;
+let currentPage = 1;
+let totalPageNumber = null;
+let searchpage = '';
+let tempGenre = 'null';
+let tempSort = '';
+
 document.addEventListener('DOMContentLoaded', function () {
-    getNav();
- });
-function getNav(){
-    fetch('../../pages/animeNav.html') // Use mangaNav.html for the manga pages
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById('navbar').innerHTML = html;
-        
-        // Attach event listener after the HTML is injected
-        const logoutBtn = document.getElementById('logout-btn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                
-                // Remove the JWT token from storage
-                localStorage.removeItem('token'); 
-                
-                // Redirect to the default public login route
-                window.location.href = '/'; 
-            });
+    if (!requireAuth()) return;
+    loadNav('nav.html', 'BrowseAnime.html');
+    setupSearchUI();
+    loadRecentSearches();
+});
+
+function setupSearchUI() {
+    document.getElementById("submit").addEventListener("click", function () {
+        document.getElementById('genre').value = "null";
+        saveRecentSearch(document.getElementById("search").value);
+        sendData();
+    });
+
+    document.getElementById('search').addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            document.getElementById('genre').value = "null";
+            saveRecentSearch(document.getElementById("search").value);
+            sendData();
         }
     });
-}
-let currentPage = 1;
-let totalPageNumber;
-let searchpage;
-let tempGenre;
 
-const cardContainer = document.getElementById("results-container");     
-const animeButtonContainer = document.createElement('div');
-const animeButtonContainer2 = document.createElement('div');
-animeButtonContainer.id = "animeContainer";
-animeButtonContainer2.id = "animeContainer2";
+    const debouncedSearch = debounce(function () {
+        const value = document.getElementById("search").value.trim();
+        if (value.length > 1) {
+            document.getElementById('genre').value = "null";
+            sendData();
+        }
+    }, 500);
+    document.getElementById('search').addEventListener('input', debouncedSearch);
 
-document.body.appendChild(animeButtonContainer)   
-document.body.insertBefore(animeButtonContainer2, cardContainer);
+    document.getElementById('genre').addEventListener('change', function () {
+        document.getElementById("search").value = " ";
+        sendDataByGenre();
+    });
 
-cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime"  style="width:100%; opacity:0.7">`
-
- document.getElementById("submit").addEventListener("click", function(){
-    document.getElementById('genre').value = "null";
-    sendData();
- })
- document.getElementById('search').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        document.getElementById('genre').value = "null";
-        sendData();
+    const sortSelect = document.getElementById('sort');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function () {
+            tempSort = sortSelect.value;
+            currentPage = 1;
+            if (tempGenre !== 'null') {
+                getResults('', currentPage, tempGenre);
+            } else if (searchpage) {
+                getResults(searchpage, currentPage, 'null');
+            }
+        });
     }
-});
-document.getElementById('genre').addEventListener('change', function() {
-    document.getElementById("search").value = " ";
-    sendDataByGenre();
-});
-function sendData(){
-    const searchQuery = document.getElementById("search").value;
+
+    document.getElementById('clear-filters').addEventListener('click', function () {
+        document.getElementById("search").value = "";
+        document.getElementById('genre').value = "null";
+        document.getElementById('sort').value = "";
+        tempSort = '';
+        searchpage = '';
+        currentPage = 1;
+        totalPageNumber = null;
+        cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Anime"  style="width:100%; opacity:0.7">`;
+        updatePagination();
+    });
+}
+
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+function saveRecentSearch(query) {
+    if (!query || !query.trim()) return;
+    let recent = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+    recent = recent.filter(s => s.toLowerCase() !== query.trim().toLowerCase());
+    recent.unshift(query.trim());
+    recent = recent.slice(0, 5);
+    localStorage.setItem('recentSearches', JSON.stringify(recent));
+    loadRecentSearches();
+}
+
+function loadRecentSearches() {
+    const container = document.getElementById('recent-searches');
+    if (!container) return;
+    const recent = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+    container.innerHTML = recent.map(s =>
+        `<span class="recent-chip" role="button" tabindex="0">${s}</span>`
+    ).join('');
+    container.querySelectorAll('.recent-chip').forEach(chip => {
+        const click = () => {
+            document.getElementById("search").value = chip.textContent;
+            document.getElementById('genre').value = "null";
+            sendData();
+        };
+        chip.addEventListener('click', click);
+        chip.addEventListener('keypress', e => { if (e.key === 'Enter') click(); });
+    });
+}
+
+function sendData() {
+    const searchQuery = document.getElementById("search").value.trim();
     currentPage = 1;
-    console.log(searchQuery);
-    if(searchQuery == "")
-    console.log("Not Found");
-    else
+    if (searchQuery === "") {
+        showToast('Enter a search term', 'warn');
+        return;
+    }
     getResults(searchQuery, currentPage, "null");
 }
-function sendDataByGenre(){
+
+function sendDataByGenre() {
     const genre = document.getElementById('genre').value;
     currentPage = 1;
-    console.log(genre);
-    if(genre == "null")
-    console.log("Not Selected");
-    else
+    if (genre === "null") return;
     getResults("", currentPage, genre);
 }
- async function getResults(searchInput, page, genre){
-    let response;
-    tempGenre = genre;
-    if(searchInput != '' && genre == 'null'){
-        response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${searchInput}&page[number]=${page}`);
+
+function buildQuery(searchInput, genre) {
+    const params = [];
+    if (searchInput && genre === 'null') {
+        params.push(`filter[text]=${encodeURIComponent(searchInput)}`);
+    } else if (!searchInput && genre !== 'null') {
+        params.push(`filter[genres]=${encodeURIComponent(genre)}`);
     }
-    else if(searchInput == '' && genre != 'null'){
-        response = await fetch(`https://kitsu.io/api/edge/anime?filter[genres]=${genre}&page[number]=${page}`);
+    if (tempSort) {
+        params.push(`sort=${tempSort}`);
     }
-    const searchData = await response.json();
-    console.log(searchData, searchInput, page, genre);
+    params.push(`page[offset]=${currentPage * PAGE_LIMIT}`);
+    params.push(`page[limit]=${PAGE_LIMIT}`);
+    return params.join('&');
+}
+
+async function getResults(searchInput, page, genre) {
     searchpage = searchInput;
-    
-    //to get the last page number
-    const url = searchData.links.last;
-    const params = new URLSearchParams(url);
-    const TempPageNumber = params.get("page[number]");
-    totalPageNumber = TempPageNumber;
-    console.log(totalPageNumber)
-    
-    if(searchData.meta.count == 0){
+    tempGenre = genre;
+    showLoading();
+    let searchData;
+    try {
+        searchData = await kitsu('anime', buildQuery(searchInput, genre));
+    } catch (err) {
+        showErrorState();
+        return;
+    }
+
+    const count = searchData.meta && searchData.meta.count;
+    totalPageNumber = count ? Math.ceil(count / PAGE_LIMIT) : null;
+
+    if (searchData.meta.count === 0) {
         cardContainer.innerHTML = `<img src="../assets/images/notFoundAnime.jpg" alt="Not Found"  style="width:100%; opacity:0.7">`;
-        animeButtonContainer.innerHTML = " ";
-        animeButtonContainer2.innerHTML = " ";
-    }else{
+    } else {
         cardContainer.innerHTML = "";
-        let cards = generateCards(searchData);
-        cards.forEach(card => {
-        cardContainer.appendChild(card);
-
-        card.addEventListener('click', () => {
-            const aniManId = card.getAttribute('animanid');
-            const aniManType = card.getAttribute('animantype');
-            console.log('Clicked card with animanid:', aniManId, aniManType);
-            const url = `../../pages/animeInfo.html?id=${aniManId}&type=${aniManType}`;
-            console.log('Opening URL:', url);
-            window.open(url, '_blank');
+        generateCards(searchData).forEach(card => {
+            cardContainer.appendChild(card);
+            card.addEventListener('click', () => {
+                openQuickView(card.getAttribute('animanid'), card.getAttribute('animantype'));
+            });
         });
-    });
-    document.getElementById('gintoki-image').style.width = '60px';
+    }
+    updatePagination();
+}
 
-    const buttonContent = `
+function updatePagination() {
+    const container = document.getElementById('animeContainer');
+    const hasResults = cardContainer.querySelector('.card');
+    if (!hasResults) {
+        container.innerHTML = '';
+        return;
+    }
+    container.innerHTML = `
     <button class="previous" onclick="prevPage()">Previous</button>
-    <div id="count">Page ${currentPage} </div>
+    <div id="count">Page ${currentPage}</div>
     <button class="next" onclick="nextPage()">Next</button>
-    `
-    animeButtonContainer.innerHTML = buttonContent;
-    animeButtonContainer2.innerHTML = buttonContent;
-    }   
- }
- function nextPage(){
-    console.log("next");
-    if(currentPage < totalPageNumber){
+    `;
+    if (totalPageNumber !== null && currentPage >= totalPageNumber) {
+        const next = container.querySelector('.next');
+        next.disabled = true;
+        next.style.opacity = 0.2;
+    }
+    if (currentPage <= 1) {
+        const prev = container.querySelector('.previous');
+        prev.disabled = true;
+        prev.style.opacity = 0.2;
+    }
+}
+
+function nextPage() {
+    if (totalPageNumber === null || currentPage < totalPageNumber) {
         currentPage++;
-        getResults(searchpage, currentPage, tempGenre)
+        getResults(searchpage, currentPage, tempGenre);
     }
-    else{
-        console.log("over")
-        const next = document.querySelectorAll(".next");
-        next.forEach(element => {
-            element.disabled = true;
-            element.style.opacity = 0.2;
-        });
-    }
- }
- function prevPage(){
-    console.log("prev");
-    if(currentPage > 1){
+}
+
+function prevPage() {
+    if (currentPage > 1) {
         currentPage--;
-        getResults(searchpage, currentPage, tempGenre)
+        getResults(searchpage, currentPage, tempGenre);
     }
-    else{
-        console.log("over")
-        const prev = document.querySelectorAll(".previous");
-        prev.forEach(element => {
-            element.disabled = true;
-            element.style.opacity = 0.2;
-        });
-    }
- }
+}
+
+function showLoading() {
+    cardContainer.innerHTML = '<div class="loading-spinner"></div>';
+}
+
+function showErrorState() {
+    cardContainer.innerHTML = `<div class="error-state"><p>Could not load results.</p><button class="retry-btn">Retry</button></div>`;
+    cardContainer.querySelector('.retry-btn').addEventListener('click', () => {
+        getResults(searchpage, currentPage, tempGenre);
+    });
+}

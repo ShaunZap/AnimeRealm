@@ -1,0 +1,128 @@
+/* ============================================================
+   Profile page — sits on top of global.css design system
+   ============================================================ */
+
+.profile-container {
+    max-width: 720px;
+    margin: 16px auto 60px;
+    padding: 0 20px;
+}
+
+#profile-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 30px;
+    text-align: center;
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: linear-gradient(120deg, var(--brand-from), var(--brand-to));
+    color: var(--accent-contrast);
+    font-size: 42px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-name {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.profile-email {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+    margin-top: 26px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+#recent-reviews {
+    margin-top: 28px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    color: var(--text);
+}
+
+.reviews-heading {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 15px;
+}
+
+.no-reviews {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 15px;
+}
+
+.review-item {
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+.review-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.review-title {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.review-rating {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.review-comment {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+@media screen and (max-width: 500px) {
+    .stats-grid {
+        gap: 22px;
+    }
+}

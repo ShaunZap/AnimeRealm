@@ -1,171 +1,218 @@
+const cardContainer = document.getElementById("results-container");
+const filterBar = document.getElementById("filter-bar");
+const PAGE_LIMIT = 12;
+let currentPage = 1;
+let totalPages = null;
+let searchpage = '';
+let tempGenre = 'null';
+let tempSort = '';
+
 document.addEventListener('DOMContentLoaded', function () {
-    getNav();
- });
-function getNav(){
-    fetch('../../pages/mangaNav.html') // Use mangaNav.html for the manga pages
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById('navbar').innerHTML = html;
-        
-        // Attach event listener after the HTML is injected
-        const logoutBtn = document.getElementById('logout-btn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                
-                // Remove the JWT token from storage
-                localStorage.removeItem('token'); 
-                
-                // Redirect to the default public login route
-                window.location.href = '/'; 
-            });
+    if (!requireAuth()) return;
+    loadNav('nav.html', 'BrowseManga.html');
+    setupSearchUI();
+    loadRecentSearches();
+});
+
+function setupSearchUI() {
+    document.getElementById("submit").addEventListener("click", function () {
+        document.getElementById('genre').value = "null";
+        saveRecentSearch(document.getElementById("search").value);
+        sendData();
+    });
+
+    document.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter' && document.getElementById('search') === document.activeElement) {
+            document.getElementById('genre').value = "null";
+            saveRecentSearch(document.getElementById("search").value);
+            sendData();
         }
     });
-}
 
- let offset = 0;
- let count = 1;
- let totalOffsetValue;
- let searchpage; 
- let tempGenre;
+    const debouncedSearch = debounce(function () {
+        const value = document.getElementById("search").value.trim();
+        if (value.length > 1) {
+            document.getElementById('genre').value = "null";
+            sendData();
+        }
+    }, 500);
+    document.getElementById('search').addEventListener('input', debouncedSearch);
 
+    document.getElementById('genre').addEventListener('change', function () {
+        document.getElementById("search").value = " ";
+        sendDataByGenre();
+    });
 
- const cardContainer = document.getElementById("results-container");          
- const animeButtonContainer = document.createElement('div');
- const animeButtonContainer2 = document.createElement('div');
- animeButtonContainer.id = "animeContainer";
- animeButtonContainer2.id = "animeContainer2";
+    const sortSelect = document.getElementById('sort');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function () {
+            tempSort = sortSelect.value;
+            currentPage = 1;
+            if (tempGenre !== 'null') {
+                getResults('', currentPage, tempGenre);
+            } else if (searchpage) {
+                getResults(searchpage, currentPage, 'null');
+            }
+        });
+    }
 
- document.body.appendChild(animeButtonContainer)
-document.body.insertBefore(animeButtonContainer2, cardContainer);
-
- cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Manga" class="d-block" style="width:100%; opacity:0.7">`
-
- document.getElementById("submit").addEventListener("click", function(){
-    document.getElementById('genre').value = "null";
-    sendData();
- })
- document.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
+    document.getElementById('clear-filters').addEventListener('click', function () {
+        document.getElementById("search").value = "";
         document.getElementById('genre').value = "null";
-        sendData();
-    }
-});
-document.getElementById('genre').addEventListener('change', function() {
-    document.getElementById("search").value = " ";
-    sendDataByGenre();
-});
-
-function sendData(){
-   const searchQuery = document.getElementById("search").value;
-    count = 1;
-    offset = 0;
-    console.log(searchQuery);
-    if(searchQuery == "")
-    console.log("Not Found");
-    else
-    getResults(searchQuery, offset, "null");
+        document.getElementById('sort').value = "";
+        tempSort = '';
+        searchpage = '';
+        currentPage = 1;
+        totalPages = null;
+        cardContainer.innerHTML = `<img src="../assets/images/allanime.jpg" alt="Manga" class="d-block" style="width:100%; opacity:0.7">`;
+        updatePagination();
+    });
 }
-function sendDataByGenre(){
+
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+function saveRecentSearch(query) {
+    if (!query || !query.trim()) return;
+    let recent = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+    recent = recent.filter(s => s.toLowerCase() !== query.trim().toLowerCase());
+    recent.unshift(query.trim());
+    recent = recent.slice(0, 5);
+    localStorage.setItem('recentSearches', JSON.stringify(recent));
+    loadRecentSearches();
+}
+
+function loadRecentSearches() {
+    const container = document.getElementById('recent-searches');
+    if (!container) return;
+    const recent = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+    container.innerHTML = recent.map(s =>
+        `<span class="recent-chip" role="button" tabindex="0">${s}</span>`
+    ).join('');
+    container.querySelectorAll('.recent-chip').forEach(chip => {
+        const click = () => {
+            document.getElementById("search").value = chip.textContent;
+            document.getElementById('genre').value = "null";
+            sendData();
+        };
+        chip.addEventListener('click', click);
+        chip.addEventListener('keypress', e => { if (e.key === 'Enter') click(); });
+    });
+}
+
+function sendData() {
+    const searchQuery = document.getElementById("search").value.trim();
+    currentPage = 1;
+    if (searchQuery === "") {
+        showToast('Enter a search term', 'warn');
+        return;
+    }
+    getResults(searchQuery, currentPage, "null");
+}
+
+function sendDataByGenre() {
     const genre = document.getElementById('genre').value;
-    count = 1;
-    offset = 0;
-    console.log(genre);
-    if(genre == "null")
-    console.log("Not Selected");
-    else
-    getResults("", offset, genre);
+    currentPage = 1;
+    if (genre === "null") return;
+    getResults("", currentPage, genre);
 }
 
- async function getResults(searchInput, offset, genre){
-    let response;
-    if(searchInput != '' && genre == 'null'){
-        response = await fetch(`https://kitsu.io/api/edge/manga?filter[text]=${searchInput}&page[offset]=${offset}`);
+function buildQuery(searchInput, genre) {
+    const params = [];
+    if (searchInput && genre === 'null') {
+        params.push(`filter[text]=${encodeURIComponent(searchInput)}`);
+    } else if (!searchInput && genre !== 'null') {
+        params.push(`filter[genres]=${encodeURIComponent(genre)}`);
+    } else if (searchInput && genre !== 'null') {
+        params.push(`filter[text]=${encodeURIComponent(searchInput)}`);
     }
-    else if(searchInput == '' && genre != 'null'){
-        offset = offset+10;
-        response = await fetch(`https://kitsu.io/api/edge/manga?filter[genres]=${genre}&page[offset]=${offset}`);
+    if (tempSort) {
+        params.push(`sort=${tempSort}`);
     }
-    else if(searchInput != '' && genre != 'null'){
-        offset = offset+10;
-        response = await fetch(`https://kitsu.io/api/edge/manga?filter[text]=${searchInput}&page[offset]=${offset}`);
-    }
-    const searchData = await response.json();
-    console.log(searchData, searchInput, offset);
+    params.push(`page[offset]=${currentPage * PAGE_LIMIT}`);
+    params.push(`page[limit]=${PAGE_LIMIT}`);
+    return params.join('&');
+}
+
+async function getResults(searchInput, page, genre) {
     searchpage = searchInput;
     tempGenre = genre;
+    showLoading();
+    let searchData;
+    try {
+        searchData = await kitsu('manga', buildQuery(searchInput, genre));
+    } catch (err) {
+        showErrorState();
+        return;
+    }
 
-    //to get the last page number
-    const url = searchData.links.last;
-    console.log(url)
-    const params = new URLSearchParams(url);
-    console.log(params)
-    const TempPageNumber = params.get("page[offset]");
-    totalOffsetValue = TempPageNumber;
-    console.log(totalOffsetValue)
+    const resultCount = searchData.meta && searchData.meta.count;
+    totalPages = resultCount ? Math.ceil(resultCount / PAGE_LIMIT) : null;
 
-    if(searchData.meta.count == 0){
+    if (resultCount === 0) {
         cardContainer.innerHTML = `<img src="../assets/images/notFoundManga.jpg" alt="Not Found"  style="width:100%; opacity:0.7">`;
-        animeButtonContainer.innerHTML = " ";
-        animeButtonContainer2.innerHTML = " ";
-
-    }else{
+    } else {
         cardContainer.innerHTML = "";
-        let cards = generateCards(searchData);
-        cards.forEach(card => {
-        cardContainer.appendChild(card);
-
-        card.addEventListener('click', () => {
-            const aniManId = card.getAttribute('animanid');
-            const aniManType = card.getAttribute('animantype');
-            console.log('Clicked card with animanid:', aniManId, aniManType);
-            const url = `../../pages/mangaInfo.html?id=${aniManId}&type=${aniManType}`;
-            console.log('Opening URL:', url);
-            window.open(url, '_blank');
+        generateCards(searchData).forEach(card => {
+            cardContainer.appendChild(card);
+            card.addEventListener('click', () => {
+                openQuickView(card.getAttribute('animanid'), card.getAttribute('animantype'));
+            });
         });
-        
-    });
-    let buttonContent = `
+    }
+    updatePagination();
+}
+
+function updatePagination() {
+    const container = document.getElementById('animeContainer');
+    const hasResults = cardContainer.querySelector('.card');
+    if (!hasResults) {
+        container.innerHTML = '';
+        return;
+    }
+    container.innerHTML = `
     <button class="previous" onclick="prevPage()">Previous</button>
-    <div id="count">Page ${count} </div>
+    <div id="count">Page ${currentPage}</div>
     <button class="next" onclick="nextPage()">Next</button>
-    `
-    
-    document.getElementById('gintoki-image').style.width = '60px';
-    animeButtonContainer.innerHTML = buttonContent
-    animeButtonContainer2.innerHTML = buttonContent
-    }   
- }
+    `;
+    if (totalPages !== null && currentPage >= totalPages) {
+        const next = container.querySelector('.next');
+        next.disabled = true;
+        next.style.opacity = 0.2;
+    }
+    if (currentPage <= 1) {
+        const prev = container.querySelector('.previous');
+        prev.disabled = true;
+        prev.style.opacity = 0.2;
+    }
+}
 
- function nextPage(){
-    console.log("next");
-    if(offset < totalOffsetValue){
-       offset = offset+10;
-       count++;
-        getResults(searchpage, offset, tempGenre)
+function nextPage() {
+    if (totalPages === null || currentPage < totalPages) {
+        currentPage++;
+        getResults(searchpage, currentPage, tempGenre);
     }
-    else{
-        console.log("over")
-        const next = document.querySelectorAll(".next");
-        next.forEach(element => {
-            element.disabled = true;
-            element.style.opacity = 0.2;
-        });
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        getResults(searchpage, currentPage, tempGenre);
     }
- }
- function prevPage(){
-    console.log("prev");
-    if(offset > 0){
-        offset = offset-10;
-       count--;
-        getResults(searchpage, offset, tempGenre)
-    }
-    else{
-        console.log("over")
-        const prev = document.querySelectorAll(".previous");
-        prev.forEach(element => {
-            element.disabled = true;
-            element.style.opacity = 0.2;
-        });
-    }
- }
+}
+
+function showLoading() {
+    cardContainer.innerHTML = '<div class="loading-spinner"></div>';
+}
+
+function showErrorState() {
+    cardContainer.innerHTML = `<div class="error-state"><p>Could not load results.</p><button class="retry-btn">Retry</button></div>`;
+    cardContainer.querySelector('.retry-btn').addEventListener('click', () => {
+        getResults(searchpage, currentPage, tempGenre);
+    });
+}
